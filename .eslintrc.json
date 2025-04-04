@@ -28,6 +28,21 @@
     "jsx-a11y",
     "prettier"
   ],
+  "ignorePatterns": [
+    "node_modules",
+    ".pnpm-store",
+    "dist",
+    "build",
+    "coverage",
+    ".env",
+    ".env.*",
+    "*.config.js",
+    "*.config.ts",
+    "vite.config.ts",
+    "*.d.ts",
+    "public",
+    "src/assets"
+  ],
   "rules": {
     "react/react-in-jsx-scope": "off",
     "react/prop-types": "off",

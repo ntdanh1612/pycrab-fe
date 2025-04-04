@@ -1,15 +1,64 @@
-# React + TypeScript + Vite
+# PyCrab Frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A modern React application built with TypeScript, Vite, and Tailwind CSS.
 
-Currently, two official plugins are available:
+## Prerequisites
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- Node.js (v20 or higher recommended)
+- pnpm (v10 or higher recommended)
 
-## Expanding the ESLint configuration
+If you don't have pnpm installed, you can install it using:
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+```bash
+npm install -g pnpm
+```
+
+## Getting Started
+
+1. Clone the repository:
+```bash
+git clone <repository-url>
+cd pycrab-fe
+```
+
+2. Install dependencies:
+```bash
+pnpm install
+```
+
+3. Start the development server:
+```bash
+pnpm dev
+```
+
+4. Build for production:
+```bash
+pnpm build
+```
+
+## Available Scripts
+
+- `pnpm dev` - Start development server with hot reload
+- `pnpm build` - Build for production
+- `pnpm preview` - Preview production build locally
+- `pnpm lint` - Run ESLint
+- `pnpm lint:fix` - Fix ESLint errors automatically
+- `pnpm format` - Format code with Prettier
+- `pnpm format:check` - Check code formatting
+
+## Technology Stack
+
+- React 18
+- TypeScript
+- Vite 5
+- Tailwind CSS 4
+- Radix UI
+- Zustand (State Management)
+- ESLint + Prettier (Code Quality)
+
+## ESLint Configuration
+
+This project uses ESLint v9 with the new flat config system. File ignores are configured directly in `eslint.config.js` using the `ignores` property:
 
 ```js
 export default tseslint.config({
@@ -28,6 +77,13 @@ export default tseslint.config({
       tsconfigRootDir: import.meta.dirname,
     },
   },
+  ignores: [
+    'node_modules',
+    'dist',
+    'build',
+    '*.config.js',
+    // ... other ignore patterns
+  ],
 })
 ```
 
@@ -52,3 +108,72 @@ export default tseslint.config({
   },
 })
 ```
+
+## Package Manager
+
+This project uses pnpm as its package manager. Please do not use npm or yarn to install dependencies as this might lead to inconsistencies. The project includes a `pnpm-lock.yaml` file to ensure dependency version consistency across the team.
+
+## Managing Dependencies
+
+### Installing Packages
+
+- Add a production dependency:
+```bash
+pnpm add <package-name>
+```
+
+- Add a development dependency:
+```bash
+pnpm add -D <package-name>
+```
+
+- Add a specific version:
+```bash
+pnpm add <package-name>@<version>
+```
+
+### Upgrading Packages
+
+- Upgrade a single package to latest version:
+```bash
+pnpm up <package-name>@latest
+```
+
+- Check outdated packages:
+```bash
+pnpm outdated
+```
+
+- Upgrade all packages (following semver):
+```bash
+pnpm up
+```
+
+### Examples
+
+```bash
+# Upgrade ESLint to latest version
+pnpm add -D eslint@latest
+
+# Add a production dependency like axios
+pnpm add axios
+
+# Add multiple dev dependencies
+pnpm add -D @types/node @types/react
+
+# Add a specific version
+pnpm add -D typescript@5.2.2
+```
+
+## Contributing
+
+1. Make sure you have pnpm installed
+2. Fork the repository
+3. Create your feature branch (`git checkout -b feature/amazing-feature`)
+4. Commit your changes using conventional commits
+5. Push to the branch (`git push origin feature/amazing-feature`)
+6. Open a Pull Request
+
+## License
+
+[Add your license here]
