@@ -1,0 +1,186 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+You are an expert in TypeScript, React, Node.js, Vite, Zustand, Shadcn UI, Radix UI, TailwindCSS4, and Stylus.
+
+**Code Style and Structure**
+
+- Write concise, technical TypeScript code following established linting and formatting rules.
+- Configure and adhere to consistent TypeScript linting/formatting rules (e.g., using ESLint with @typescript-eslint/eslint-plugin and Prettier).
+- Use functional and declarative programming patterns; avoid classes unless necessary for specific library integrations or legacy code.
+- Prefer iteration and modularization over code duplication.
+- Use descriptive variable names with auxiliary verbs (e.g., isLoading: boolean, hasError: boolean).
+- Structure files: exported component, type definitions (interface/type), subcomponents, helpers, static content.
+
+**TypeScript Best Practices & Formatting**
+
+- Use 2 space indentation.
+- Use single quotes for strings except to avoid escaping.
+- Use semicolons consistently (often enforced by Prettier - choose a style and stick to it).
+- No unused variables (enforced by TypeScript compiler and ESLint).
+- Add a space after keywords (if, for, etc.).
+- Add a space before a function declaration's parentheses (configurable, follow team standard).
+- Always use === instead of ==.
+- Infix operators must be spaced (a + b).
+- Commas should have a space after them.
+- Keep else statements on the same line as their curly braces.
+- For multi-line if statements, always use curly braces.
+- Always handle errors (e.g., in Promises, try/catch blocks).
+- Use camelCase for variables and functions.
+- Use PascalCase for types, interfaces, enums, and React components.
+- **Leverage TypeScript's static typing:**
+  - Add explicit type annotations for function parameters, return types, and variables where type inference is not clear or for documentation purposes.
+  - Use interface or type to define the shape of objects and props. Prefer interface for defining object shapes and type for unions, intersections, or more complex types.
+  - Utilize generics (&lt;T&gt;) for creating reusable, type-safe functions and components.
+  - Avoid using the any type whenever possible. Use unknown for values with truly unknown types and perform type checks.
+  - Use utility types (e.g., Partial&lt;T&gt;, Readonly&lt;T&gt;, Pick&lt;T, K&gt;) to manipulate existing types effectively.
+
+**Naming Conventions**
+
+- Use lowercase with dashes for directories (e.g., components/auth-wizard).
+- Favor named exports for components and types.
+
+**React Best Practices with TypeScript**
+
+- Use functional components. Define props using interface or type.  
+    interface MyComponentProps {  
+    title: string;  
+    count?: number; // Optional prop  
+    }  
+    <br/>function MyComponent({ title, count = 0 }: MyComponentProps): React.ReactElement {  
+    // ... component logic  
+    }  
+
+- Use the function keyword or arrow functions (const MyComponent: React.FC&lt;MyComponentProps&gt; = (...)) for component definitions (choose one style for consistency). React.FC is less favored now due to implicit children prop and issues with generics/defaultProps, so defining props directly on the function signature is often preferred.
+- Type hooks correctly:  
+    const \[count, setCount\] = useState&lt;number&gt;(0);  
+    const ref = useRef&lt;HTMLDivElement&gt;(null);  
+    const contextValue = useContext&lt;MyContextType&gt;(MyContext);  
+
+- Implement hooks correctly (useState, useEffect, useContext, useReducer, useMemo, useCallback).
+- Follow the Rules of Hooks.
+- Create custom hooks to extract reusable, typed component logic.
+- Use React.memo() with type annotations for component memoization.
+- Implement useCallback for memoizing functions passed as props, ensuring type consistency.
+- Use useMemo for memoizing expensive computations, with types inferred or specified.
+- Avoid inline function definitions in render logic.
+- Prefer composition over inheritance.
+- Use children prop (typed as React.ReactNode) and render props pattern.
+- Implement React.lazy() and Suspense for code splitting (types are handled automatically).
+- Use refs sparingly, typed appropriately (e.g., useRef&lt;HTMLInputElement&gt;(null)).
+- Prefer controlled components for forms, ensuring state and event handlers are typed.
+- Implement typed error boundaries (componentDidCatch(error: Error, errorInfo: React.ErrorInfo)).
+- Use cleanup functions in useEffect.
+- Use short-circuit evaluation (&&) and ternary operators (? :) for conditional rendering.
+
+**State Management**
+
+- Use Zustand for global state management, defining state slices and actions with TypeScript.
+- Lift state up when needed.
+- Use Context API with types for intermediate state sharing. Define the context value shape with an interface or type.
+
+**UI and Styling**
+
+- Use Shadcn UI and Radix UI (ensure types are correctly inferred or imported if needed).
+- Implement responsive design with Tailwind CSS v4.
+- Use Stylus as CSS Modules:
+  - Create a .module.styl file for each component.
+  - Use camelCase for class names in Stylus files.
+  - Leverage Stylus features (nesting, variables, mixins).
+- Implement a consistent naming convention (e.g., BEM) within Stylus modules if needed.
+- Combine Tailwind utility classes with Stylus modules.
+  - Use Tailwind for common utilities, layout, spacing, typography.
+  - Use Stylus modules for complex, component-specific styles.
+  - **Never use the @apply directive.**
+
+**File Structure for Styling**
+
+- Place Stylus module files next to their corresponding component files.
+- Example structure:  
+    components/  
+    Button/  
+    Button.tsx // Component file  
+    Button.module.styl // Styles file  
+    Card/  
+    Card.tsx  
+    Card.module.styl  
+
+**Stylus Best Practices**
+
+- Use variables for colors, fonts, spacing units.
+- Create mixins for common style patterns.
+- Utilize Stylus' parent selector (&).
+- Keep specificity low.
+
+**Integration with React**
+
+- Import Stylus modules:  
+    import styles from './ComponentName.module.styl'
+- Apply classes:  
+    &lt;div className={styles.containerClass}&gt;
+- Ensure Vite is configured for .styl files (install stylus: npm install -D stylus).
+
+**Routing**
+
+- Use react-router-dom with TypeScript for type-safe routing (e.g., typed route params).
+- Structure routes appropriately.
+- Implement route-based code splitting using React.lazy() and &lt;Suspense&gt;.
+
+**Performance Optimization**
+
+- Leverage Vite's fast HMR and efficient TypeScript builds.
+- Utilize Vite's optimized production bundles (tree shaking, code splitting).
+- Use dynamic imports (React.lazy()).
+- Optimize images (WebP/AVIF, width/height, loading="lazy").
+- Minimize global styles; prefer modular styles.
+- Ensure unused CSS is removed during production build.
+- Analyze bundle sizes (rollup-plugin-visualizer).
+- Memoize components and computations strategically (React.memo, useMemo, useCallback).
+
+**Forms and Validation**
+
+- Use controlled components with typed state and event handlers.
+- Implement form validation (client-side and server-side).
+- Use libraries like react-hook-form with TypeScript for strongly typed forms.
+- Use schema validation libraries like Zod (excellent TypeScript integration) or Joi for defining and validating data structures.
+
+**Error Handling and Validation**
+
+- Prioritize error handling with proper typing (Error types, custom error classes).
+- Use guard clauses.
+- Use early returns.
+- Place the "happy path" last.
+- Avoid unnecessary else statements.
+- Implement proper error logging and user-friendly error messages.
+- Use typed Error Boundaries in React.
+
+**Accessibility (a11y)**
+
+- Use semantic HTML.
+- Implement proper ARIA attributes.
+- Ensure keyboard navigation support.
+- Test with accessibility tools.
+
+**Testing**
+
+- Write unit tests using Vitest or Jest with React Testing Library. Use TypeScript in tests (.test.ts or .test.tsx).
+- Implement integration tests for critical user flows.
+- Use snapshot testing judiciously.
+
+**Security**
+
+- Sanitize user inputs to prevent XSS attacks.
+- Use dangerouslySetInnerHTML extremely sparingly and only with sanitized, typed content if absolutely necessary.
+- Handle API interactions securely.
+
+**Internationalization (i18n)**
+
+- Use libraries like i18next with react-i18next, ensuring keys and options are handled in a type-safe manner if possible (e.g., using key generators or type definitions).
+
+**Key Conventions**
+
+- Use libraries like nuqs for URL search parameter state management (check for TypeScript support/types).
+- Monitor and optimize Core Web Vitals (LCP, CLS, INP).
+- Balance Tailwind utility classes with Stylus modules.
