@@ -1,18 +1,20 @@
 # Gift & Souvenir E-commerce Project Plan
 
+Notes: Check the task immediately when completed, (Make sure don't work on the complted tasks)
+
 ## Tech Stack
 - Vite
 - React with TypeScript (SWC)
 - Tailwind CSS
 - Zustand for state management
-- Shadcn UI & Radix UI for components
+- Shadcn & Radix UI for components
 
 ## Epic 1: Project Setup & Configuration
 - [x] Initialize Vite project with React-TS template
 - [x] Configure SWC for optimal build performance
-- [ ] Set up Tailwind CSS with custom theme configuration
+- [x] Set up Tailwind CSS with custom theme configuration
 - [ ] Install and configure Zustand for state management
-- [ ] Set up Shadcn UI and Radix UI component libraries
+- [ ] Set up Shadcn and Radix UI component libraries
 - [ ] Configure project folder structure (pages, components, hooks, stores, utils, etc.)
 - [ ] Set up ESLint and Prettier for code quality
 - [ ] Configure Git repository with proper branching strategy
