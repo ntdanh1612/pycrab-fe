@@ -1,6 +1,6 @@
 # Gift & Souvenir E-commerce Project Plan
 
-Notes: Check the task immediately when completed, (Make sure don't work on the complted tasks)
+Notes: mark the task done ([x]) immediately when completed, (Make sure don't work on the complted tasks)
 
 ## Tech Stack
 - Vite
@@ -13,8 +13,8 @@ Notes: Check the task immediately when completed, (Make sure don't work on the c
 - [x] Initialize Vite project with React-TS template
 - [x] Configure SWC for optimal build performance
 - [x] Set up Tailwind CSS with custom theme configuration
-- [ ] Install and configure Zustand for state management
-- [ ] Set up Shadcn and Radix UI component libraries
+- [x] Install and configure Zustand for state management
+- [x] Set up Shadcn and Radix UI component libraries
 - [ ] Configure project folder structure (pages, components, hooks, stores, utils, etc.)
 - [ ] Set up ESLint and Prettier for code quality
 - [ ] Configure Git repository with proper branching strategy

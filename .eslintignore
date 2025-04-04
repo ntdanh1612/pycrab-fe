@@ -1,0 +1,24 @@
+# Dependencies
+node_modules
+.pnpm-store
+
+# Build output
+dist
+build
+coverage
+
+# Environment
+.env
+.env.*
+
+# Configuration files
+*.config.js
+*.config.ts
+vite.config.ts
+
+# Type definitions
+*.d.ts
+
+# Assets
+public
+src/assets 
