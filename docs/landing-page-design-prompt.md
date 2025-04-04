@@ -1,0 +1,7 @@
+Design & Aesthetic Note for Landing Page:
+
+
+Theme: Aim for a visually rich, warm, and inviting aesthetic that evokes the joy of gift-giving and the charm of unique souvenirs. Consider using a clean layout that allows high-quality product photography to shine.
+Visuals: Utilize beautiful, high-resolution images for the hero section, featured products, banners, and product cards. Ensure consistency in image style and quality. Consider subtle animations or hover effects on product cards and buttons to add delight.
+Color Palette & Typography: Choose a color palette that feels welcoming and perhaps incorporates accent colors that pop, drawing attention to calls-to-action or special offers. Select elegant and readable fonts that complement the brand's personality (e.g., a friendly serif for headings, a clean sans-serif for body text).
+User Experience: Ensure navigation is intuitive, especially dropdowns. The product carousels/grids should be easy to interact with on all devices. Testimonials should build trust and feel authentic. The overall flow should guide the user naturally towards exploring products and potentially making a purchase or signing up for the newsletter. Skeleton loading states should be smooth and visually integrated with the design, preventing jarring layout shifts.
