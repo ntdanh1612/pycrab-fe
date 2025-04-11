@@ -35,18 +35,17 @@ Notes: mark the task done ([x]) immediately when completed, (Make sure don't wor
 - [x] Implement skeleton loading states for dynamic content
 
 ## Epic 3: Authentication System
-- [ ] Set up authentication store with Zustand
-- [ ] Create registration form with validation
-- [ ] Implement login form with validation
-- [ ] Set up JWT token handling and storage
-- [ ] Implement password reset functionality
-- [ ] Create account verification flow
-- [ ] Set up protected route middleware
-- [ ] Implement Google SSO integration
-- [ ] Implement Facebook SSO integration
-- [ ] Add Apple SSO integration
-- [ ] Create user session management
-- [ ] Implement authentication error handling
+- [x] Set up authentication store with Zustand
+- [x] Create registration form with validation
+- [x] Implement login form with validation
+- [x] Set up JWT token handling and storage
+- [x] Implement password reset functionality
+- [x] Create account verification flow
+- [x] Set up protected route middleware
+- [x] Implement Google SSO integration
+- [x] Implement Facebook SSO integration
+- [x] Create user session management
+- [x] Implement authentication error handling
 
 ## Epic 4: User Portal & Shopping Experience
 - [ ] Implement product listing page with filters

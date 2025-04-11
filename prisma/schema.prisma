@@ -1,0 +1,103 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// User authentication and profile
+model User {
+  id                String    @id @default(dbgenerated("uuid_generate_v4()")) @db.Uuid
+  createdAt         DateTime  @default(now()) @map("created_at") @db.Timestamptz
+  updatedAt         DateTime  @default(now()) @updatedAt @map("updated_at") @db.Timestamptz
+  email             String    @unique
+  passwordHash      String    @map("password_hash")
+  lastLogin         DateTime? @map("last_login") @db.Timestamptz
+  emailVerified     Boolean   @default(false) @map("email_verified")
+  active            Boolean   @default(true)
+  
+  // Relationships
+  profile           Profile?
+  sessions          Session[]
+  passwordResetTokens PasswordResetToken[]
+  verificationTokens  VerificationToken[]
+
+  @@map("users")
+}
+
+model Profile {
+  id         String    @id @default(dbgenerated("uuid_generate_v4()")) @db.Uuid
+  userId     String    @unique @map("user_id") @db.Uuid
+  createdAt  DateTime  @default(now()) @map("created_at") @db.Timestamptz
+  updatedAt  DateTime  @default(now()) @updatedAt @map("updated_at") @db.Timestamptz
+  firstName  String?   @map("first_name")
+  lastName   String?   @map("last_name")
+  avatarUrl  String?   @map("avatar_url")
+  bio        String?
+  role       String    @default("user")
+  
+  // Relationships
+  user       User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("profiles")
+}
+
+model Session {
+  id          String    @id @default(dbgenerated("uuid_generate_v4()")) @db.Uuid
+  userId      String    @map("user_id") @db.Uuid
+  token       String    @unique
+  userAgent   String?   @map("user_agent")
+  ipAddress   String?   @map("ip_address")
+  createdAt   DateTime  @default(now()) @map("created_at") @db.Timestamptz
+  expiresAt   DateTime  @map("expires_at") @db.Timestamptz
+  
+  // Relationships
+  user        User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("sessions")
+}
+
+model PasswordResetToken {
+  id        String    @id @default(dbgenerated("uuid_generate_v4()")) @db.Uuid
+  createdAt DateTime  @default(now()) @map("created_at") @db.Timestamptz
+  expiresAt DateTime  @map("expires_at") @db.Timestamptz
+  userId    String    @map("user_id") @db.Uuid
+  token     String    @unique
+  isUsed    Boolean   @default(false) @map("is_used")
+  
+  // Relationships
+  user      User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("password_reset_tokens")
+}
+
+model VerificationToken {
+  id        String    @id @default(dbgenerated("uuid_generate_v4()")) @db.Uuid
+  createdAt DateTime  @default(now()) @map("created_at") @db.Timestamptz
+  expiresAt DateTime  @map("expires_at") @db.Timestamptz
+  userId    String    @map("user_id") @db.Uuid
+  token     String    @unique
+  isUsed    Boolean   @default(false) @map("is_used")
+  
+  // Relationships
+  user      User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("verification_tokens")
+}
+
+// Migration tracking table (from 000_init_migration_functions.sql)
+model Migration {
+  id        Int       @id @default(autoincrement())
+  name      String    @unique
+  appliedAt DateTime  @default(now()) @map("applied_at") @db.Timestamptz
+
+  @@map("migrations")
+}

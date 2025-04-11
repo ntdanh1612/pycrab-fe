@@ -6,6 +6,7 @@ A modern React application built with TypeScript, Vite, and Tailwind CSS.
 
 - Node.js (v20 or higher recommended)
 - pnpm (v10 or higher recommended)
+- Supabase account (for authentication)
 
 If you don't have pnpm installed, you can install it using:
 
@@ -26,12 +27,16 @@ cd pycrab-fe
 pnpm install
 ```
 
-3. Start the development server:
+3. Set up Supabase (required for authentication):
+   - Follow the instructions in [SUPABASE_SETUP.md](./SUPABASE_SETUP.md)
+   - Create a `.env` file by copying `.env.example` and fill in your Supabase credentials
+
+4. Start the development server:
 ```bash
 pnpm dev
 ```
 
-4. Build for production:
+5. Build for production:
 ```bash
 pnpm build
 ```
@@ -54,6 +59,7 @@ pnpm build
 - Tailwind CSS 4
 - Radix UI
 - Zustand (State Management)
+- Supabase (Authentication & Database)
 - ESLint + Prettier (Code Quality)
 
 ## ESLint Configuration

@@ -1,0 +1,70 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "../generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// Map the existing tables from the migrations
+model Profile {
+  id         String   @id @db.Uuid
+  createdAt  DateTime @default(now()) @map("created_at") @db.Timestamptz
+  updatedAt  DateTime @default(now()) @map("updated_at") @db.Timestamptz
+  email      String   @unique
+  name       String
+  avatarUrl  String?  @map("avatar_url")
+  role       String   @default("user")
+  isVerified Boolean  @default(false) @map("is_verified")
+
+  // Relationships
+  passwordResetTokens PasswordResetToken[]
+  verificationTokens  VerificationToken[]
+
+  @@map("profiles")
+}
+
+model PasswordResetToken {
+  id        String   @id @default(dbgenerated("uuid_generate_v4()")) @db.Uuid
+  createdAt DateTime @default(now()) @map("created_at") @db.Timestamptz
+  expiresAt DateTime @map("expires_at") @db.Timestamptz
+  userId    String   @map("user_id") @db.Uuid
+  token     String   @unique
+  isUsed    Boolean  @default(false) @map("is_used")
+
+  // Relationships
+  profile Profile @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("password_reset_tokens")
+}
+
+model VerificationToken {
+  id        String   @id @default(dbgenerated("uuid_generate_v4()")) @db.Uuid
+  createdAt DateTime @default(now()) @map("created_at") @db.Timestamptz
+  expiresAt DateTime @map("expires_at") @db.Timestamptz
+  userId    String   @map("user_id") @db.Uuid
+  token     String   @unique
+  isUsed    Boolean  @default(false) @map("is_used")
+
+  // Relationships
+  profile Profile @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("verification_tokens")
+}
+
+// Migration tracking table (from 002_create_migration_function.sql)
+model Migration {
+  id        Int      @id @default(autoincrement())
+  name      String   @unique
+  appliedAt DateTime @default(now()) @map("applied_at") @db.Timestamptz
+
+  @@map("migrations")
+}
