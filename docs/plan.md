@@ -15,24 +15,24 @@ Notes: mark the task done ([x]) immediately when completed, (Make sure don't wor
 - [x] Set up Tailwind CSS with custom theme configuration
 - [x] Install and configure Zustand for state management
 - [x] Set up Shadcn and Radix UI component libraries
-- [ ] Configure project folder structure (pages, components, hooks, stores, utils, etc.)
-- [ ] Set up ESLint and Prettier for code quality
-- [ ] Configure Git repository with proper branching strategy
-- [ ] Create environment configuration for dev/staging/prod
+- [x] Configure project folder structure (pages, components, hooks, stores, utils, etc.)
+- [x] Set up ESLint and Prettier for code quality
+<!-- - [ ] Configure Git repository with proper branching strategy (low-priority) -->
+<!-- - [ ] Create environment configuration for dev/staging/prod  (low-priority) -->
 <!-- - [ ] Set up CI/CD pipeline for automated deployments (low-priority) -->
 
 ## Epic 2: Landing Page Development
-- [ ] Design and implement responsive hero section with featured products
-- [ ] Create navigation component with dropdown categories
-- [ ] Implement featured products carousel/grid
-- [ ] Design and implement promotional banners section
-- [ ] Create "New Arrivals" section with product cards
-- [ ] Implement "Best Sellers" section with product cards
-- [ ] Design and implement customer testimonials section
-- [ ] Create newsletter subscription component
-- [ ] Implement footer with site links, social media, and contact info
+- [x] Design and implement responsive hero section with featured products
+- [x] Create navigation component with dropdown categories
+- [x] Implement featured products carousel/grid
+- [x] Design and implement promotional banners section
+- [x] Create "New Arrivals" section with product cards
+- [x] Implement "Best Sellers" section with product cards
+- [x] Design and implement customer testimonials section
+- [x] Create newsletter subscription component
+- [x] Implement footer with site links, social media, and contact info
 <!-- - [ ] Add SEO metadata and optimizations (low-priority) -->
-- [ ] Implement skeleton loading states for dynamic content
+- [x] Implement skeleton loading states for dynamic content
 
 ## Epic 3: Authentication System
 - [ ] Set up authentication store with Zustand

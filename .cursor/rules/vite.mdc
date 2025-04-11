@@ -3,7 +3,7 @@ description:
 globs: 
 alwaysApply: true
 ---
-You are an expert in TypeScript, React, Node.js, Vite, Zustand, Shadcn UI, Radix UI, TailwindCSS4, and Stylus.
+You are an expert in TypeScript, React, Node.js, Vite, Zustand, Shadcn, Radix UI, TailwindCSS4, and Stylus.
 
 **Code Style and Structure**
 

@@ -1,21 +1,52 @@
 @import "tailwindcss";
 
 @theme {
-  --color-primary: oklch(0.278078 0.029596 256.848);
-  --color-primary-foreground: oklch(0.98 0 0);
+  /* New Gift & Souvenir Color Palette */
+  /* Base Colors */
+  --color-cream: #F2EFE7;
+  --color-teal-light: #9ACBD0;
+  --color-teal-medium: #48A6A7;
+  --color-teal-dark: #006A71;
   
-  --color-secondary: oklch(0.961151 0 0);
-  --color-secondary-foreground: oklch(0.278078 0.029596 256.848);
+  /* Semantic Colors */
+  --color-background: var(--color-cream);
+  --color-foreground: var(--color-teal-dark);
   
+  /* Primary - Deep Teal */
+  --color-primary: var(--color-teal-dark);
+  --color-primary-foreground: var(--color-cream);
+  
+  /* Secondary - Medium Teal */
+  --color-secondary: var(--color-teal-medium);
+  --color-secondary-foreground: var(--color-cream);
+  
+  /* Accent - Light Teal */
+  --color-accent: var(--color-teal-light);
+  --color-accent-foreground: var(--color-teal-dark);
+  
+  /* Muted - Cream with transparency */
+  --color-muted: color-mix(in oklch, var(--color-cream), transparent 20%);
+  --color-muted-foreground: var(--color-teal-medium);
+  
+  /* Destructive - Keep destructive for error states */
   --color-destructive: oklch(0.648274 0.193891 22.3521);
-  --color-destructive-foreground: oklch(0.98 0 0);
+  --color-destructive-foreground: var(--color-cream);
   
-  --color-accent: oklch(0.961151 0 0);
-  --color-accent-foreground: oklch(0.278078 0.029596 256.848);
+  /* Card */
+  --color-card: color-mix(in oklch, var(--color-cream), transparent 10%);
+  --color-card-foreground: var(--color-teal-dark);
   
+  /* Border & Ring */
+  --color-border: color-mix(in oklch, var(--color-teal-light), transparent 70%);
+  --color-ring: var(--color-teal-medium);
+  
+  /* Radius values */
   --radius-sm: 0.25rem;
   --radius-md: 0.375rem;
   --radius-lg: 0.5rem;
   
-  --ring: oklch(0.278078 0.029596 256.848);
+  /* Shadows */
+  --shadow-sm: 0 1px 2px 0 rgba(0, 106, 113, 0.05);
+  --shadow-md: 0 4px 6px -1px rgba(0, 106, 113, 0.1), 0 2px 4px -2px rgba(0, 106, 113, 0.1);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 106, 113, 0.1), 0 4px 6px -4px rgba(0, 106, 113, 0.1);
 }
