@@ -1,6 +1,6 @@
-import { Container } from "@/components/ui/container"
-import { ProductCard } from "@/components/ui/product-card"
-import { newArrivals } from "@/data/mock-products"
+import { Container } from '@/components/ui/container'
+import { ProductCard } from '@/components/ui/product-card'
+import { newArrivals } from '@/data/mock-products'
 
 export function NewArrivals() {
   return (
@@ -22,4 +22,4 @@ export function NewArrivals() {
       </Container>
     </section>
   )
-} 
+}

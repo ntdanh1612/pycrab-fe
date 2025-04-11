@@ -1,4 +1,4 @@
-import { Card, CardContent, CardFooter } from "./card"
+import { Card, CardContent, CardFooter } from './card'
 
 export function ProductCardSkeleton() {
   return (
@@ -27,4 +27,4 @@ export function ProductGridSkeleton() {
       ))}
     </div>
   )
-} 
+}
