@@ -11,6 +11,7 @@ import { Footer } from '@/components/landing/Footer'
 import { Alert, AlertDescription } from '@/components/ui/alert'
 import { AlertCircle } from 'lucide-react'
 import { CallbackPage } from '@/pages/auth/CallbackPage'
+import { Chatbot } from '@/components/chatbot/Chatbot'
 
 // Lazy load other pages to improve initial load time
 const ForgotPasswordPage = React.lazy(() => import('@/pages/auth/ForgotPasswordPage'))
@@ -108,6 +109,7 @@ function App({ initialError }: AppProps) {
           </Routes>
         </main>
         <Footer />
+        <Chatbot />
       </div>
     </Router>
   )
