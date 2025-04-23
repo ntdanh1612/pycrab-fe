@@ -30,6 +30,7 @@
   
   /* Destructive - Keep destructive for error states */
   --color-destructive: oklch(0.648274 0.193891 22.3521);
+  --color-destructive-dark: oklch(0.5 0.2 22.3521);
   --color-destructive-foreground: var(--color-cream);
   
   /* Card */

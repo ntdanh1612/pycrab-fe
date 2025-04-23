@@ -160,6 +160,16 @@ export const Chatbot = () => {
     };
   }, [messages]);
 
+  // Add new useEffect to check scrollability when expand/minimize state changes
+  useEffect(() => {
+    // Wait for DOM to update after expansion/minimization
+    setTimeout(() => {
+      checkScrollability();
+      // Double check after transition completes (300ms matches the transition-all duration-300)
+      setTimeout(checkScrollability, 300);
+    }, 50);
+  }, [isExpanded, isMaximized]);
+
   const handleScrollProducts = (direction: 'left' | 'right') => {
     if (!productsContainerRef.current) return;
     
@@ -206,7 +216,7 @@ export const Chatbot = () => {
       {!isExpanded && (
         <button
           onClick={() => setIsExpanded(true)}
-          className="fixed bottom-6 right-6 w-14 h-14 rounded-full bg-teal-dark flex items-center justify-center text-cream hover:scale-110 transition-transform duration-200 hover:bg-teal-medium shadow-lg z-[9999] border-2 border-white"
+          className="fixed bottom-6 right-6 w-14 h-14 rounded-full bg-teal-dark flex items-center justify-center text-cream hover:scale-110 transition-transform duration-200 hover:bg-teal-medium shadow-lg z-[9999] border-2 border-white cursor-pointer"
           aria-label="Open chat"
         >
           <MessageSquare size={24} />
@@ -239,14 +249,14 @@ export const Chatbot = () => {
             <div className="flex items-center gap-2">
               <button
                 onClick={() => setIsExpanded(false)}
-                className="text-cream hover:text-teal-light"
+                className="text-cream hover:text-teal-light cursor-pointer"
                 aria-label="Minimize chat"
               >
                 <Minus size={20} />
               </button>
               <button
                 onClick={toggleMaximize}
-                className="text-cream hover:text-teal-light"
+                className="text-cream hover:text-teal-light cursor-pointer"
                 aria-label={isMaximized ? "Minimize chat" : "Maximize chat"}
               >
                 {isMaximized ? (
@@ -257,7 +267,7 @@ export const Chatbot = () => {
               </button>
               <button
                 onClick={handleCloseChat}
-                className="text-cream hover:text-teal-light"
+                className="text-cream hover:text-teal-light cursor-pointer"
                 aria-label="Close chat"
               >
                 <X size={20} />
@@ -279,7 +289,7 @@ export const Chatbot = () => {
                       className="w-full h-full object-cover"
                     />
                   </div>
-                  <div className="max-w-[80%] rounded-lg p-3 bg-white/90 backdrop-blur-sm border border-teal-light/50 text-teal-dark shadow-sm">
+                  <div className="max-w-[80%] rounded-lg p-3 bg-white/90 backdrop-blur-sm border border-teal-light/50 text-teal-dark shadow-sm cursor-default">
                     <p className="mb-2">Hi! I'm your shopping assistant. Here are some popular products you might like:</p>
                     <div className="relative">
                       <div 
@@ -302,7 +312,7 @@ export const Chatbot = () => {
                       {/* Always show left scroll button for testing */}
                       <button
                         onClick={() => handleScrollProducts('left')}
-                        className={`absolute left-0 top-2/5 -translate-y-1/2 w-8 h-8 flex items-center justify-center bg-white hover:bg-cream text-teal-dark rounded-full shadow-md transition-all z-20 ${!canScrollLeft && 'opacity-50 pointer-events-none'}`}
+                        className={`absolute left-0 top-2/5 -translate-y-1/2 w-8 h-8 flex items-center justify-center bg-white hover:bg-cream text-teal-dark rounded-full shadow-md transition-all z-20 cursor-pointer ${!canScrollLeft && 'opacity-50 pointer-events-none'}`}
                         aria-label="Scroll products left"
                       >
                         <ChevronLeft size={20} />
@@ -310,7 +320,7 @@ export const Chatbot = () => {
                       {/* Always show right scroll button for testing */}
                       <button
                         onClick={() => handleScrollProducts('right')}
-                        className={`absolute right-0 top-2/5 -translate-y-1/2 w-8 h-8 flex items-center justify-center bg-white hover:bg-cream text-teal-dark rounded-full shadow-md transition-all z-20 ${!canScrollRight && 'opacity-50 pointer-events-none'}`}
+                        className={`absolute right-0 top-2/5 -translate-y-1/2 w-8 h-8 flex items-center justify-center bg-white hover:bg-cream text-teal-dark rounded-full shadow-md transition-all z-20 cursor-pointer ${!canScrollRight && 'opacity-50 pointer-events-none'}`}
                         aria-label="Scroll products right"
                       >
                         <ChevronRight size={20} />
@@ -338,7 +348,7 @@ export const Chatbot = () => {
                     </div>
                   )}
                   <div
-                    className={`max-w-[75%] break-words rounded-lg p-3 ${
+                    className={`max-w-[75%] break-words rounded-lg p-3 cursor-default ${
                       message.sender === 'user'
                         ? 'bg-gradient-to-r from-teal-medium to-teal-light text-white shadow-md'
                         : 'bg-white/90 backdrop-blur-sm border border-teal-light/50 text-teal-dark shadow-sm'
@@ -363,7 +373,7 @@ export const Chatbot = () => {
                   onKeyDown={handleKeyDown}
                   placeholder="Type a message ..."
                   rows={1}
-                  className="w-full p-3 pr-12 rounded-lg border border-teal-light/50 focus:outline-none focus:ring-2 focus:ring-teal-medium resize-none bg-white/90 backdrop-blur-sm min-h-[44px]"
+                  className="w-full p-3 pr-12 rounded-lg border border-teal-light/50 focus:outline-none focus:ring-2 focus:ring-teal-medium resize-none bg-white/90 backdrop-blur-sm min-h-[44px] cursor-text"
                   style={{
                     height: 'auto',
                     overflow: 'hidden'
@@ -373,7 +383,7 @@ export const Chatbot = () => {
                   onClick={handleSendMessage}
                   className={`absolute right-3 top-1/2 -translate-y-1/2 ${
                     inputValue.trim() ? 'text-teal-dark' : 'text-teal-medium'
-                  } hover:text-teal-dark p-1`}
+                  } hover:text-teal-dark p-1 cursor-pointer`}
                   aria-label="Send message"
                 >
                   <Send size={20} />
@@ -381,19 +391,19 @@ export const Chatbot = () => {
               </div>
               <div className="flex items-center gap-2 px-1">
                 <button 
-                  className="text-teal-medium hover:text-teal-dark p-1.5 rounded hover:bg-teal-light/10"
+                  className="text-teal-medium hover:text-teal-dark p-1.5 rounded hover:bg-teal-light/10 cursor-pointer"
                   aria-label="Voice input"
                 >
                   <Mic size={20} />
                 </button>
                 <button 
-                  className="text-teal-medium hover:text-teal-dark p-1.5 rounded hover:bg-teal-light/10"
+                  className="text-teal-medium hover:text-teal-dark p-1.5 rounded hover:bg-teal-light/10 cursor-pointer"
                   aria-label="Upload file"
                 >
                   <Paperclip size={20} />
                 </button>
                 <button 
-                  className="text-teal-medium hover:text-teal-dark p-1.5 rounded hover:bg-teal-light/10"
+                  className="text-teal-medium hover:text-teal-dark p-1.5 rounded hover:bg-teal-light/10 cursor-pointer"
                   aria-label="Emoji picker"
                 >
                   <Smile size={20} />
@@ -423,13 +433,13 @@ export const Chatbot = () => {
                 <div className="flex justify-center gap-2">
                   <button
                     onClick={() => setShowCloseDialog(false)}
-                    className="px-3 py-1.5 bg-teal-medium text-cream rounded-lg hover:bg-teal-dark hover:shadow-lg transition-all duration-200"
+                    className="px-3 py-1.5 bg-teal-medium text-cream rounded-lg hover:bg-teal-dark hover:shadow-lg transition-all duration-200 cursor-pointer"
                   >
                     Keep Chatting
                   </button>
                   <button
                     onClick={handleConfirmClose}
-                    className="px-3 py-1.5 bg-destructive text-cream rounded-lg hover:bg-destructive-dard hover:shadow-lg transition-all duration-200"
+                    className="px-3 py-1.5 bg-destructive text-cream rounded-lg hover:bg-destructive-dark hover:shadow-lg transition-all duration-200 cursor-pointer"
                   >
                     End Chat
                   </button>
