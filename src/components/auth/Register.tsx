@@ -213,7 +213,7 @@ export function Register() {
         </div>
 
         <SocialAuth />
-        
+
         <div className="text-sm text-center text-muted-foreground">
           Already have an account?{' '}
           <Link to="/login" className="text-secondary hover:text-primary transition-colors">

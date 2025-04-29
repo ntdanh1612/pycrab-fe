@@ -1,15 +1,22 @@
-import { Star, ShoppingCart } from 'lucide-react';
+import { Star, ShoppingCart } from 'lucide-react'
 
 interface ProductCardProps {
-  image: string;
-  name: string;
-  price: number;
-  rating: number;
-  reviewCount: number;
-  onSelect: () => void;
+  image: string
+  name: string
+  price: number
+  rating: number
+  reviewCount: number
+  onSelect: () => void
 }
 
-export const ProductCard = ({ image, name, price, rating, reviewCount, onSelect }: ProductCardProps) => {
+export const ProductCard = ({
+  image,
+  name,
+  price,
+  rating,
+  reviewCount,
+  onSelect,
+}: ProductCardProps) => {
   return (
     <div className="flex-none w-48 bg-white rounded-lg shadow-sm border border-teal-light overflow-hidden group">
       <div className="aspect-square w-full bg-gray-100 relative overflow-hidden">
@@ -21,7 +28,7 @@ export const ProductCard = ({ image, name, price, rating, reviewCount, onSelect 
         <div className="absolute inset-0 bg-black/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
         <button
           onClick={onSelect}
-          className="absolute bottom-2 right-2 bg-teal-dark text-cream p-2 rounded-full opacity-0 group-hover:opacity-100 transition-all duration-300 hover:bg-teal-medium transform translate-y-2 group-hover:translate-y-0"
+          className="absolute bottom-2 right-2 bg-teal-dark text-cream p-2 rounded-full opacity-0 group-hover:opacity-100 transition-all duration-300 hover:bg-teal-medium transform translate-y-2 group-hover:translate-y-0 cursor-pointer"
           aria-label="Select product"
         >
           <ShoppingCart size={16} />
@@ -37,5 +44,5 @@ export const ProductCard = ({ image, name, price, rating, reviewCount, onSelect 
         <p className="text-sm font-semibold text-teal-dark">${price.toFixed(2)}</p>
       </div>
     </div>
-  );
-}; 
+  )
+}

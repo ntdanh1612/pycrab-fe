@@ -40,7 +40,9 @@ export function ProductCard({ product, className, ...props }: ProductCardProps) 
         <div className="absolute left-2 top-2 flex flex-col gap-1">
           {isNew && <Badge className="bg-primary text-primary-foreground">New</Badge>}
           {isBestSeller && (
-            <Badge className="bg-accent text-accent-foreground font-medium hover:text-destructive-foreground">Best Seller</Badge>
+            <Badge className="bg-accent text-accent-foreground font-medium hover:text-destructive-foreground">
+              Best Seller
+            </Badge>
           )}
           {discount && (
             <Badge className="bg-destructive text-destructive-foreground font-medium">
@@ -51,7 +53,9 @@ export function ProductCard({ product, className, ...props }: ProductCardProps) 
       </div>
       <CardContent className="p-4 bg-gradient-to-b from-white to-secondary/5">
         <div className="text-sm text-muted-foreground">{category}</div>
-        <h3 className="mt-1 font-medium text-foreground transition-colors duration-300 group-hover:text-destructive">{name}</h3>
+        <h3 className="mt-1 font-medium text-foreground transition-colors duration-300 group-hover:text-destructive">
+          {name}
+        </h3>
       </CardContent>
       <CardFooter className="p-4 pt-0 bg-gradient-to-t from-white to-secondary/5">
         <div className="flex items-center gap-2">

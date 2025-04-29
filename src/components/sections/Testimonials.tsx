@@ -37,7 +37,7 @@ export function Testimonials() {
     <section ref={sectionRef} className="py-20 bg-gradient-to-b from-white to-muted/30">
       <Container>
         <div className="flex flex-col gap-10">
-          <div 
+          <div
             className={`flex flex-col items-center gap-3 text-center transform transition-all duration-700 ${
               isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
             }`}
@@ -52,11 +52,9 @@ export function Testimonials() {
               <Card
                 key={testimonial.id}
                 className={`relative overflow-hidden border border-secondary/10 bg-white shadow-sm hover:shadow-md transition-all duration-500 group transform ${
-                  isVisible 
-                    ? 'translate-y-0 opacity-100' 
-                    : 'translate-y-16 opacity-0'
+                  isVisible ? 'translate-y-0 opacity-100' : 'translate-y-16 opacity-0'
                 }`}
-                style={{ 
+                style={{
                   transitionDelay: isVisible ? `${index * 200}ms` : '0ms',
                 }}
               >

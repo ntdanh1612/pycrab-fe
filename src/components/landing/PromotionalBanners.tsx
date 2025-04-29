@@ -6,7 +6,8 @@ const promotions = [
     id: 1,
     title: 'Summer Beach Collection',
     description: 'Discover our exclusive beach-themed gifts and souvenirs',
-    image: 'https://images.pexels.com/photos/1004584/pexels-photo-1004584.jpeg?auto=compress&cs=tinysrgb&w=800',
+    image:
+      'https://images.pexels.com/photos/1004584/pexels-photo-1004584.jpeg?auto=compress&cs=tinysrgb&w=800',
     buttonText: 'Shop Now',
     buttonColor: 'bg-secondary text-secondary-foreground hover:bg-secondary/90',
   },
@@ -14,7 +15,8 @@ const promotions = [
     id: 2,
     title: 'Handcrafted Island Art',
     description: 'Unique pieces created by local artisans',
-    image: 'https://images.pexels.com/photos/6431796/pexels-photo-6431796.jpeg?auto=compress&cs=tinysrgb&w=800',
+    image:
+      'https://images.pexels.com/photos/6431796/pexels-photo-6431796.jpeg?auto=compress&cs=tinysrgb&w=800',
     buttonText: 'Explore',
     buttonColor: 'bg-secondary text-secondary-foreground hover:bg-secondary/90',
   },

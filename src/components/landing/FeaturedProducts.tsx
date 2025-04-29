@@ -7,28 +7,32 @@ const featuredProducts = [
     id: '1',
     name: 'Handcrafted Sea Turtle Figurine',
     price: 54.99,
-    image: 'https://images.pexels.com/photos/1266708/pexels-photo-1266708.jpeg?auto=compress&cs=tinysrgb&w=800',
+    image:
+      'https://images.pexels.com/photos/1266708/pexels-photo-1266708.jpeg?auto=compress&cs=tinysrgb&w=800',
     category: 'Collectibles',
   },
   {
     id: '2',
     name: 'Hawaiian Island Map Bamboo Cutting Board',
     price: 79.99,
-    image: 'https://images.pexels.com/photos/8251628/pexels-photo-8251628.jpeg?auto=compress&cs=tinysrgb&w=800',
+    image:
+      'https://images.pexels.com/photos/8251628/pexels-photo-8251628.jpeg?auto=compress&cs=tinysrgb&w=800',
     category: 'Kitchen & Dining',
   },
   {
     id: '3',
     name: 'Blue Ocean Wave Resin Art Wall Hanging',
     price: 39.99,
-    image: 'https://images.pexels.com/photos/8251628/pexels-photo-8251628.jpeg?auto=compress&cs=tinysrgb&w=800',
+    image:
+      'https://images.pexels.com/photos/8251628/pexels-photo-8251628.jpeg?auto=compress&cs=tinysrgb&w=800',
     category: 'Art & Home Decor',
   },
   {
     id: '4',
     name: 'Hand-Painted Tropical Sunrise Mug',
     price: 24.99,
-    image: 'https://images.pexels.com/photos/1076886/pexels-photo-1076886.jpeg?auto=compress&cs=tinysrgb&w=800',
+    image:
+      'https://images.pexels.com/photos/1076886/pexels-photo-1076886.jpeg?auto=compress&cs=tinysrgb&w=800',
     category: 'Drinkware',
   },
 ]

@@ -7,7 +7,7 @@ Notes: mark the task done ([x]) immediately when completed, (Make sure don't wor
 - React with TypeScript (SWC)
 - Tailwind CSS
 - Zustand for state management
-- Shadcn & Radix UI for components
+- Radix UI for components
 
 ## Epic 1: Project Setup & Configuration
 - [x] Initialize Vite project with React-TS template

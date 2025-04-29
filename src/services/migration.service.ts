@@ -1,6 +1,4 @@
 import { supabase } from './supabase'
-import fs from 'fs'
-import path from 'path'
 
 export class MigrationService {
   private migrationsPath: string

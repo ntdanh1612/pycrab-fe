@@ -1,4 +1,3 @@
-import { migrationService } from './migration.service'
 import { supabase } from './supabase'
 
 class InitializationService {
@@ -29,7 +28,7 @@ class InitializationService {
 
   private async checkSupabaseConnection() {
     try {
-      const { data, error } = await supabase
+      const { error } = await supabase
         .from('profiles')
         .select('count', { count: 'exact', head: true })
 

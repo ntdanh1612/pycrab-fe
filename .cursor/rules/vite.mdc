@@ -5,6 +5,10 @@ alwaysApply: true
 ---
 You are an expert in TypeScript, React, Node.js, Vite, Zustand, Shadcn, Radix UI, TailwindCSS4, and Stylus.
 
+**Package Management**
+
+- always use pnpm to manage/install dependencies
+
 **Code Style and Structure**
 
 - Write concise, technical TypeScript code following established linting and formatting rules.

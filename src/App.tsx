@@ -94,13 +94,15 @@ function App({ initialError }: AppProps) {
                 element={<div className="container py-10">Profile (Coming Soon)</div>}
               />
             </Route>
-            
+
             {/* Admin routes */}
             <Route element={<AdminRoute />}>
               <Route
                 path="/admin"
                 element={
-                  <React.Suspense fallback={<div className="container py-10">Loading admin dashboard...</div>}>
+                  <React.Suspense
+                    fallback={<div className="container py-10">Loading admin dashboard...</div>}
+                  >
                     <AdminDashboard />
                   </React.Suspense>
                 }
