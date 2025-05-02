@@ -13,7 +13,8 @@ import { Button } from '@/components/ui/button'
 import { useAuthStore } from '@/stores/auth.store'
 import { useEffect, useState } from 'react'
 import { supabaseAuthService } from '@/services/auth.supabase'
-import { UserCircle } from 'lucide-react'
+import { Heart, Search, UserCircle } from 'lucide-react'
+import { CartIndicator } from '@/components/cart/CartIndicator'
 
 const categories = [
   {
@@ -23,15 +24,6 @@ const categories = [
       { title: 'Anniversary Gifts', href: '/category/anniversary' },
       { title: 'Wedding Gifts', href: '/category/wedding' },
       { title: 'Corporate Gifts', href: '/category/corporate' },
-    ],
-  },
-  {
-    title: 'Souvenirs',
-    items: [
-      { title: 'Local Crafts', href: '/category/local-crafts' },
-      { title: 'Traditional Art', href: '/category/traditional-art' },
-      { title: 'Regional Specialties', href: '/category/regional' },
-      { title: 'Cultural Items', href: '/category/cultural' },
     ],
   },
   {
@@ -81,6 +73,16 @@ export function MainNav() {
           <div className="flex items-center gap-4">
             <NavigationMenu>
               <NavigationMenuList className="gap-1">
+                <NavigationMenuItem>
+                  <NavigationMenuLink asChild>
+                    <Link
+                      to="/products"
+                      className="inline-flex h-9 items-center justify-center rounded-md bg-transparent px-4 py-2 text-sm font-medium text-foreground transition-colors hover:bg-primary/5 hover:text-primary focus:bg-primary/5"
+                    >
+                      All Products
+                    </Link>
+                  </NavigationMenuLink>
+                </NavigationMenuItem>
                 {categories.map((category) => (
                   <NavigationMenuItem key={category.title}>
                     <NavigationMenuTrigger className="bg-transparent text-foreground hover:bg-primary/5 hover:text-primary focus:bg-primary/5 data-[active]:bg-primary/5 data-[state=open]:bg-primary/5 data-[state=open]:text-primary cursor-pointer">
@@ -107,6 +109,20 @@ export function MainNav() {
               </NavigationMenuList>
             </NavigationMenu>
             <div className="flex items-center gap-2">
+              {/* Shopping icons */}
+              <div className="flex items-center gap-1 mr-1">
+                <Button variant="ghost" size="icon" aria-label="Search products" asChild>
+                  <Link to="/products">
+                    <Search className="h-5 w-5" />
+                  </Link>
+                </Button>
+                <Button variant="ghost" size="icon" aria-label="View wishlist" asChild>
+                  <Link to="/wishlist">
+                    <Heart className="h-5 w-5" />
+                  </Link>
+                </Button>
+                <CartIndicator />
+              </div>
               {isAuthenticated ? (
                 <>
                   <div className="flex items-center mr-2 text-foreground">

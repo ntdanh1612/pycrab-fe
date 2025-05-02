@@ -19,6 +19,14 @@ const ResetPasswordPage = React.lazy(() => import('@/pages/auth/ResetPasswordPag
 const VerifyAccountPage = React.lazy(() => import('@/pages/auth/VerifyAccountPage'))
 const AdminDashboard = React.lazy(() => import('@/pages/admin/AdminDashboard'))
 
+// Lazy load new Epic 4 pages
+const ProductListingPage = React.lazy(() => import('@/pages/products/ProductListingPage'))
+const ProductDetailPage = React.lazy(() => import('@/pages/products/ProductDetailPage'))
+const CartPage = React.lazy(() => import('@/pages/cart/CartPage'))
+const CheckoutPage = React.lazy(() => import('@/pages/checkout/CheckoutPage'))
+const OrderConfirmationPage = React.lazy(() => import('@/pages/checkout/OrderConfirmationPage'))
+const WishlistPage = React.lazy(() => import('@/pages/wishlist/WishlistPage'))
+
 interface AppProps {
   initialError?: string
 }
@@ -82,6 +90,58 @@ function App({ initialError }: AppProps) {
               }
             />
             <Route path="/auth/callback" element={<CallbackPage />} />
+
+            {/* Shopping Experience Routes */}
+            <Route
+              path="/products"
+              element={
+                <React.Suspense fallback={<div className="container py-10">Loading products...</div>}>
+                  <ProductListingPage />
+                </React.Suspense>
+              }
+            />
+            <Route
+              path="/products/:productId"
+              element={
+                <React.Suspense fallback={<div className="container py-10">Loading product...</div>}>
+                  <ProductDetailPage />
+                </React.Suspense>
+              }
+            />
+            <Route
+              path="/cart"
+              element={
+                <React.Suspense fallback={<div className="container py-10">Loading cart...</div>}>
+                  <CartPage />
+                </React.Suspense>
+              }
+            />
+            <Route
+              path="/wishlist"
+              element={
+                <React.Suspense fallback={<div className="container py-10">Loading wishlist...</div>}>
+                  <WishlistPage />
+                </React.Suspense>
+              }
+            />
+
+            {/* Checkout Process Routes */}
+            <Route
+              path="/checkout"
+              element={
+                <React.Suspense fallback={<div className="container py-10">Loading checkout...</div>}>
+                  <CheckoutPage />
+                </React.Suspense>
+              }
+            />
+            <Route
+              path="/checkout/success"
+              element={
+                <React.Suspense fallback={<div className="container py-10">Loading...</div>}>
+                  <OrderConfirmationPage />
+                </React.Suspense>
+              }
+            />
 
             {/* Protected routes */}
             <Route element={<ProtectedRoute />}>

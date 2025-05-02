@@ -48,7 +48,7 @@ export function HeroSection() {
       <Container className="grid lg:grid-cols-2 gap-8 items-center py-12 relative z-10 h-full">
         <div className="space-y-6 backdrop-blur-md p-8 rounded-2xl shadow-lg border bg-card/60 border-accent/30">
           <h1 className="text-4xl font-display font-bold tracking-tight sm:text-6xl text-foreground">
-            Discover Unique Gifts & Souvenirs
+            Discover Unique Gifts
           </h1>
           <p className="text-lg text-secondary">
             Find the perfect gift for every occasion. Handcrafted with love, delivered with care.
