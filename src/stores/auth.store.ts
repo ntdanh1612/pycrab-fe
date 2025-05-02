@@ -58,7 +58,7 @@ export const useAuthStore = create<AuthState>()(
           set({ loading: true, error: null })
           try {
             const response = await authService.register(data)
-            
+
             // Check if we got a token back (indicates successful auth)
             if (response.token) {
               set({
@@ -72,7 +72,8 @@ export const useAuthStore = create<AuthState>()(
                 isAuthenticated: false,
                 user: null,
                 loading: false,
-                error: "Registration successful! Please check your email to verify your account before logging in."
+                error:
+                  'Registration successful! Please check your email to verify your account before logging in.',
               })
             }
           } catch (error) {
@@ -88,7 +89,7 @@ export const useAuthStore = create<AuthState>()(
           set({ loading: true })
           try {
             await authService.logout()
-            
+
             // Call resetStore to fully clear all state
             get().resetStore()
           } catch (error) {
@@ -140,13 +141,13 @@ export const useAuthStore = create<AuthState>()(
             throw error
           }
         },
-        
+
         handleAuthCallback: async () => {
           set({ loading: true, error: null })
           try {
             // @ts-expect-error - We know this method exists in our Supabase implementation
             const { user, session } = await authService.handleAuthCallback()
-            
+
             if (session && user) {
               set({
                 isAuthenticated: true,
@@ -177,11 +178,11 @@ export const useAuthStore = create<AuthState>()(
         resetStore: () => {
           // Reset to initial state
           set(initialState)
-          
+
           // Clear any persisted auth state from localStorage
           try {
             localStorage.removeItem('auth-storage')
-            
+
             // Look for any auth-related keys that might be lingering
             for (let i = 0; i < localStorage.length; i++) {
               const key = localStorage.key(i)

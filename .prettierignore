@@ -26,3 +26,6 @@ coverage
 # System
 .DS_Store
 Thumbs.db 
+
+generated/prisma/**
+prisma/**

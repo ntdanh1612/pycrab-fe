@@ -23,6 +23,8 @@ export default tseslint.config(
       '*.d.ts',
       'public',
       'src/assets',
+      'generated/prisma',
+      'prisma',
     ],
   },
   {

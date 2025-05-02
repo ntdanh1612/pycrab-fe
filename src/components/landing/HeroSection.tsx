@@ -90,8 +90,8 @@ export function HeroSection() {
                     }}
                   >
                     <img
-                      src="https://picsum.photos/seed/gift1/400"
-                      alt="Handcrafted Ceramic Vase"
+                      src="https://images.pexels.com/photos/19018935/pexels-photo-19018935/free-photo-of-coconut-scented-candle-in-jar.jpeg?auto=compress&cs=tinysrgb&w=800"
+                      alt="Tropical Coconut Scented Candle"
                       className="aspect-square object-cover w-full rounded-md transition-transform duration-700 group-hover:scale-105"
                     />
                     <div className="absolute inset-0 opacity-0 transition-opacity duration-300 group-hover:opacity-50 rounded-md bg-gradient-to-r from-primary/40 to-transparent" />
@@ -104,7 +104,7 @@ export function HeroSection() {
                     transformStyle: 'preserve-3d',
                   }}
                 >
-                  Ceramic Vase
+                  Scented Candle
                 </div>
               </Card>
             </div>
@@ -128,8 +128,8 @@ export function HeroSection() {
                     }}
                   >
                     <img
-                      src="https://picsum.photos/seed/gift2/400"
-                      alt="Traditional Tea Set"
+                      src="https://images.pexels.com/photos/6048903/pexels-photo-6048903.jpeg?auto=compress&cs=tinysrgb&w=800"
+                      alt="Handcrafted Ceramic Mug Set"
                       className="aspect-square object-cover w-full rounded-md transition-transform duration-700 group-hover:scale-105"
                     />
                     <div className="absolute inset-0 opacity-0 transition-opacity duration-300 group-hover:opacity-50 rounded-md bg-gradient-to-r from-secondary/40 to-transparent" />
@@ -142,7 +142,7 @@ export function HeroSection() {
                     transformStyle: 'preserve-3d',
                   }}
                 >
-                  Tea Set
+                  Ceramic Mugs
                 </div>
               </Card>
             </div>
@@ -166,8 +166,8 @@ export function HeroSection() {
                     }}
                   >
                     <img
-                      src="https://picsum.photos/seed/gift3/400"
-                      alt="Silk Embroidered Scarf"
+                      src="https://images.pexels.com/photos/3879495/pexels-photo-3879495.jpeg?auto=compress&cs=tinysrgb&w=800"
+                      alt="Eco-Friendly Woven Beach Tote"
                       className="aspect-square object-cover w-full rounded-md transition-transform duration-700 group-hover:scale-105"
                     />
                     <div className="absolute inset-0 opacity-0 transition-opacity duration-300 group-hover:opacity-50 rounded-md bg-gradient-to-r from-accent/40 to-transparent" />
@@ -180,7 +180,7 @@ export function HeroSection() {
                     transformStyle: 'preserve-3d',
                   }}
                 >
-                  Silk Scarf
+                  Beach Tote
                 </div>
               </Card>
             </div>
@@ -204,8 +204,8 @@ export function HeroSection() {
                     }}
                   >
                     <img
-                      src="https://picsum.photos/seed/gift4/400"
-                      alt="Wooden Music Box"
+                      src="https://images.pexels.com/photos/4846401/pexels-photo-4846401.jpeg?auto=compress&cs=tinysrgb&w=800"
+                      alt="Handmade Shell Wind Chimes"
                       className="aspect-square object-cover w-full rounded-md transition-transform duration-700 group-hover:scale-105"
                     />
                     <div className="absolute inset-0 opacity-0 transition-opacity duration-300 group-hover:opacity-50 rounded-md bg-gradient-to-r from-primary/40 to-transparent" />
@@ -218,7 +218,7 @@ export function HeroSection() {
                     transformStyle: 'preserve-3d',
                   }}
                 >
-                  Music Box
+                  Wind Chimes
                 </div>
               </Card>
             </div>

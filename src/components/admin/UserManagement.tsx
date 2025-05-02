@@ -2,9 +2,15 @@ import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { Button } from '@/components/ui/button'
 import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card'
-import { Table, TableHeader, TableRow, TableHead, TableBody, TableCell } from '@/components/ui/table'
+import {
+  Table,
+  TableHeader,
+  TableRow,
+  TableHead,
+  TableBody,
+  TableCell,
+} from '@/components/ui/table'
 import { Badge } from '@/components/ui/badge'
-import { useAuthStore } from '@/stores/auth.store'
 import { supabaseAuthService } from '@/services/auth.supabase'
 import type { User } from '@/types/auth'
 
@@ -14,21 +20,21 @@ export function UserManagement() {
   const [users, setUsers] = useState<User[]>([])
   const [error, setError] = useState<string | null>(null)
   const [isAdmin, setIsAdmin] = useState(false)
-  
+
   useEffect(() => {
     const checkAdminAndLoadUsers = async () => {
       try {
         setLoading(true)
-        
+
         // Check if user is admin
         const adminStatus = await supabaseAuthService.isAdmin()
         setIsAdmin(adminStatus)
-        
+
         if (!adminStatus) {
           setError('You do not have permission to access this page')
           return
         }
-        
+
         // Load users
         const userList = await supabaseAuthService.getAllUsers()
         setUsers(userList)
@@ -40,10 +46,10 @@ export function UserManagement() {
         setLoading(false)
       }
     }
-    
+
     checkAdminAndLoadUsers()
   }, [])
-  
+
   if (!isAdmin && !loading) {
     return (
       <Card className="max-w-md mx-auto mt-8">
@@ -52,17 +58,14 @@ export function UserManagement() {
         </CardHeader>
         <CardContent>
           <p>You do not have permission to access this admin area.</p>
-          <Button
-            onClick={() => navigate('/')}
-            className="mt-4"
-          >
+          <Button onClick={() => navigate('/')} className="mt-4">
             Return to Home
           </Button>
         </CardContent>
       </Card>
     )
   }
-  
+
   return (
     <Card className="mx-auto">
       <CardHeader>
@@ -118,4 +121,4 @@ export function UserManagement() {
       </CardContent>
     </Card>
   )
-} 
+}

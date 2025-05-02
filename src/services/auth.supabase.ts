@@ -64,7 +64,7 @@ export class SupabaseAuthService {
       }
     } catch (error) {
       console.error('Error fetching user data:', error)
-      
+
       // Return minimal user data if we can't fetch the full profile
       return {
         token: data.session.access_token,
@@ -75,7 +75,7 @@ export class SupabaseAuthService {
           role: 'user',
           createdAt: new Date().toISOString(),
           updatedAt: new Date().toISOString(),
-        }
+        },
       }
     }
   }
@@ -114,7 +114,7 @@ export class SupabaseAuthService {
       if (!authData.user) {
         throw new Error('Registration failed: No user data returned')
       }
-      
+
       // If there's no session (email confirmation required), create a minimal user object
       if (!authData.session) {
         return {
@@ -126,8 +126,8 @@ export class SupabaseAuthService {
             role: 'user',
             createdAt: new Date().toISOString(),
             updatedAt: new Date().toISOString(),
-          }
-        };
+          },
+        }
       }
 
       // Wait for triggers to create user and profile
@@ -142,7 +142,7 @@ export class SupabaseAuthService {
 
       if (userError) {
         console.error('Failed to fetch user data:', userError)
-        
+
         // If we can't get the user data, try to create it manually
         await supabase.from('users').upsert({
           id: authData.user.id,
@@ -161,7 +161,7 @@ export class SupabaseAuthService {
 
       if (profileError) {
         console.error('Failed to fetch profile data:', profileError)
-        
+
         // If we can't get the profile, try to create it manually
         await supabase.from('profiles').upsert({
           id: crypto.randomUUID(),
@@ -170,20 +170,20 @@ export class SupabaseAuthService {
           last_name: lastName || '',
           role: 'user',
         })
-        
+
         // Try to get the profile again
         const { data: newProfileData } = await supabase
           .from('profiles')
           .select()
           .eq('user_id', authData.user.id)
           .single()
-          
+
         if (newProfileData) {
           // Store the token
           if (authData.session) {
             localStorage.setItem(AUTH_CONFIG.tokenKey, authData.session.access_token)
           }
-          
+
           return {
             token: authData.session?.access_token || '',
             user: {
@@ -236,17 +236,17 @@ export class SupabaseAuthService {
   async logout(): Promise<void> {
     try {
       // Sign out from all sessions across all devices
-      const { error } = await supabase.auth.signOut({ 
-        scope: 'global' 
+      const { error } = await supabase.auth.signOut({
+        scope: 'global',
       })
-      
+
       if (error) {
         console.error('Logout error:', error)
       }
-      
+
       // Purge all sessions
       await this.purgeAllSessions()
-      
+
       // Clear browser session state
       const keysToClear = [
         AUTH_CONFIG.tokenKey,
@@ -257,18 +257,18 @@ export class SupabaseAuthService {
         'sb-access-token',
         'supabase.auth.refreshToken',
         'supabase.auth.expiresAt',
-        'auth-storage'
+        'auth-storage',
       ]
-      
+
       // Clear all possible auth-related items from localStorage
-      keysToClear.forEach(key => {
+      keysToClear.forEach((key) => {
         try {
           localStorage.removeItem(key)
         } catch (e) {
           console.error(`Failed to remove ${key} from localStorage:`, e)
         }
       })
-      
+
       // Force clear all supabase-related items
       for (let i = 0; i < localStorage.length; i++) {
         const key = localStorage.key(i)
@@ -280,7 +280,7 @@ export class SupabaseAuthService {
           }
         }
       }
-      
+
       // If sessionStorage is being used, clear it too
       try {
         for (let i = 0; i < sessionStorage.length; i++) {
@@ -289,8 +289,8 @@ export class SupabaseAuthService {
             sessionStorage.removeItem(key)
           }
         }
-      } catch (e) {
-        console.error('Error clearing sessionStorage:', e)
+      } catch {
+        // Silently handle sessionStorage clear failure
       }
     } catch (error) {
       console.error('Logout error:', error)
@@ -304,23 +304,31 @@ export class SupabaseAuthService {
   private async purgeAllSessions(): Promise<void> {
     try {
       // Get the current session
-      const { data: { session } } = await supabase.auth.getSession()
-      
+      const {
+        data: { session },
+      } = await supabase.auth.getSession()
+
       if (session) {
         // If there's a session, try to purge all sessions for this user
         try {
           // This is done via sign out with global scope
           await supabase.auth.signOut({ scope: 'global' })
-          
+
           // Additionally clear any browser storage
           window.localStorage.clear()
-          try { window.sessionStorage.clear() } catch (e) {}
-          
+          try {
+            window.sessionStorage.clear()
+          } catch {
+            // Silently handle sessionStorage clear failure
+          }
+
           // Attempt to clear cookies as well
-          document.cookie.split(';').forEach(c => {
-            document.cookie = c.replace(/^ +/, '').replace(/=.*/, '=;expires=' + new Date().toUTCString() + ';path=/')
+          document.cookie.split(';').forEach((c) => {
+            document.cookie = c
+              .replace(/^ +/, '')
+              .replace(/=.*/, '=;expires=' + new Date().toUTCString() + ';path=/')
           })
-          
+
           // Specifically target Google auth cookies
           this.clearGoogleAuthCookies()
         } catch (e) {
@@ -339,30 +347,30 @@ export class SupabaseAuthService {
     try {
       // Common Google cookie names related to authentication
       const googleCookies = [
-        'GAPS', 
-        'LSID', 
-        'HSID', 
-        'SSID', 
-        'APISID', 
-        'SAPISID', 
-        'S', 
-        'NID', 
+        'GAPS',
+        'LSID',
+        'HSID',
+        'SSID',
+        'APISID',
+        'SAPISID',
+        'S',
+        'NID',
         '1P_JAR',
         'SIDCC',
         '__Secure-1PSID',
         '__Secure-3PSID',
         '__Secure-1PAPISID',
         '__Secure-3PAPISID',
-        'OTZ'
+        'OTZ',
       ]
 
       // Expire all possible Google cookies
-      googleCookies.forEach(name => {
+      googleCookies.forEach((name) => {
         document.cookie = `${name}=;expires=${new Date(0).toUTCString()};domain=.google.com;path=/`
         document.cookie = `${name}=;expires=${new Date(0).toUTCString()};domain=accounts.google.com;path=/`
         document.cookie = `${name}=;expires=${new Date(0).toUTCString()};path=/`
       })
-      
+
       // Note: This may not be fully effective due to browser security constraints,
       // but it provides an additional layer of cleanup
     } catch (e) {
@@ -429,63 +437,63 @@ export class SupabaseAuthService {
     try {
       // Get current user
       const { data: session } = await supabase.auth.getSession()
-      
+
       if (!session.session) {
         return false
       }
-      
+
       // Get profile with role
       const { data: profile, error } = await supabase
         .from('profiles')
         .select('role')
         .eq('user_id', session.session.user.id)
         .single()
-      
+
       if (error || !profile) {
         return false
       }
-      
+
       return profile.role === 'admin'
     } catch (error) {
       console.error('Error checking admin status:', error)
       return false
     }
   }
-  
+
   async getAllUsers(): Promise<User[]> {
     try {
       // First check if current user is admin
       const isAdmin = await this.isAdmin()
-      
+
       if (!isAdmin) {
         throw new Error('Unauthorized: Only admins can access user list')
       }
-      
+
       // Get all user and profile data
       const { data: usersData, error: usersError } = await supabase
         .from('users')
         .select()
         .order('created_at', { ascending: false })
-      
+
       if (usersError) {
         throw new Error(usersError.message)
       }
-      
+
       // Get profiles for all users
-      const { data: profilesData, error: profilesError } = await supabase
-        .from('profiles')
-        .select()
-      
+      const { data: profilesData, error: profilesError } = await supabase.from('profiles').select()
+
       if (profilesError) {
         throw new Error(profilesError.message)
       }
-      
+
       // Match users with their profiles
-      const users = usersData.map(user => {
-        const profile = profilesData.find(p => p.user_id === user.id)
-        return profile ? this.mapUserAndProfileToUser(user, profile) : null
-      }).filter(Boolean) as User[]
-      
+      const users = usersData
+        .map((user) => {
+          const profile = profilesData.find((p) => p.user_id === user.id)
+          return profile ? this.mapUserAndProfileToUser(user, profile) : null
+        })
+        .filter(Boolean) as User[]
+
       return users
     } catch (error) {
       console.error('Error fetching users:', error)
@@ -498,7 +506,7 @@ export class SupabaseAuthService {
     const firstName = profile.first_name || ''
     const lastName = profile.last_name || ''
     const name = [firstName, lastName].filter(Boolean).join(' ') || 'Unnamed User'
-    
+
     return {
       id: userData.id,
       email: userData.email,
@@ -509,7 +517,7 @@ export class SupabaseAuthService {
       updatedAt: userData.updated_at,
     }
   }
-  
+
   /**
    * Handle the OAuth callback after a user authenticates with a social provider
    * This should be called on the /auth/callback route
@@ -517,23 +525,26 @@ export class SupabaseAuthService {
   async handleAuthCallback(): Promise<{ user: User | null; session: boolean }> {
     try {
       // Get the current session
-      const { data: { session }, error: sessionError } = await supabase.auth.getSession()
-      
+      const {
+        data: { session },
+        error: sessionError,
+      } = await supabase.auth.getSession()
+
       if (sessionError || !session) {
         console.error('No session found in callback:', sessionError)
         return { user: null, session: false }
       }
-      
+
       // User is now authenticated, fetch additional data
       const userId = session.user.id
-      
+
       // Get the user data
       const { data: userData, error: userError } = await supabase
         .from('users')
         .select()
         .eq('id', userId)
         .single()
-        
+
       if (userError) {
         console.error('Failed to fetch user data in callback:', userError)
         // Try to create the user data if it doesn't exist
@@ -545,27 +556,27 @@ export class SupabaseAuthService {
           active: true,
         })
       }
-      
+
       // Get or create profile
       const { data: profileData, error: profileError } = await supabase
         .from('profiles')
         .select()
         .eq('user_id', userId)
         .single()
-        
+
       if (profileError) {
         console.error('Failed to fetch profile in callback:', profileError)
-        
+
         // Extract name from user metadata
         let firstName = ''
         let lastName = ''
-        
+
         if (session.user.user_metadata && session.user.user_metadata.full_name) {
           const nameParts = session.user.user_metadata.full_name.split(' ')
           firstName = nameParts[0]
           lastName = nameParts.length > 1 ? nameParts.slice(1).join(' ') : ''
         }
-        
+
         // Create a new profile
         await supabase.from('profiles').upsert({
           id: crypto.randomUUID(),
@@ -575,19 +586,41 @@ export class SupabaseAuthService {
           avatar_url: session.user.user_metadata?.avatar_url || null,
           role: 'user',
         })
-        
+
         // Try to get the profile again
         const { data: newProfileData } = await supabase
           .from('profiles')
           .select()
           .eq('user_id', userId)
           .single()
-          
+
         if (newProfileData) {
           // We have a profile now
           return {
             user: this.mapUserAndProfileToUser(
-              userData || {
+              userData ||
+                ({
+                  id: userId,
+                  email: session.user.email || '',
+                  created_at: new Date().toISOString(),
+                  updated_at: new Date().toISOString(),
+                  last_login: new Date().toISOString(),
+                  email_verified: true,
+                  active: true,
+                } as UserData),
+              newProfileData
+            ),
+            session: true,
+          }
+        }
+      }
+
+      // If we have all the data, map to user model
+      if (profileData) {
+        return {
+          user: this.mapUserAndProfileToUser(
+            userData ||
+              ({
                 id: userId,
                 email: session.user.email || '',
                 created_at: new Date().toISOString(),
@@ -595,44 +628,25 @@ export class SupabaseAuthService {
                 last_login: new Date().toISOString(),
                 email_verified: true,
                 active: true,
-              } as UserData,
-              newProfileData
-            ),
-            session: true
-          }
-        }
-      }
-      
-      // If we have all the data, map to user model
-      if (profileData) {
-        return {
-          user: this.mapUserAndProfileToUser(
-            userData || {
-              id: userId,
-              email: session.user.email || '',
-              created_at: new Date().toISOString(),
-              updated_at: new Date().toISOString(),
-              last_login: new Date().toISOString(),
-              email_verified: true,
-              active: true,
-            } as UserData,
+              } as UserData),
             profileData
           ),
-          session: true
+          session: true,
         }
       }
-      
+
       // Fallback with minimal user data
       return {
         user: {
           id: userId,
           email: session.user.email || '',
-          name: session.user.user_metadata?.full_name || session.user.email?.split('@')[0] || 'User',
+          name:
+            session.user.user_metadata?.full_name || session.user.email?.split('@')[0] || 'User',
           role: 'user',
           createdAt: new Date().toISOString(),
           updatedAt: new Date().toISOString(),
         },
-        session: true
+        session: true,
       }
     } catch (error) {
       console.error('Error handling auth callback:', error)

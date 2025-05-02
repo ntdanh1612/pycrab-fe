@@ -4,18 +4,20 @@ import { Button } from '@/components/ui/button'
 const promotions = [
   {
     id: 1,
-    title: 'Spring Collection',
-    description: 'Discover our new spring arrivals with up to 30% off',
-    image: 'https://picsum.photos/seed/spring-collection/800/450',
+    title: 'Summer Beach Collection',
+    description: 'Discover our exclusive beach-themed gifts and souvenirs',
+    image:
+      'https://images.pexels.com/photos/1004584/pexels-photo-1004584.jpeg?auto=compress&cs=tinysrgb&w=800',
     buttonText: 'Shop Now',
     buttonColor: 'bg-secondary text-secondary-foreground hover:bg-secondary/90',
   },
   {
     id: 2,
-    title: 'Gift Cards',
-    description: 'The perfect gift for any occasion',
-    image: 'https://picsum.photos/seed/gift-cards/800/450',
-    buttonText: 'Buy Now',
+    title: 'Handcrafted Island Art',
+    description: 'Unique pieces created by local artisans',
+    image:
+      'https://images.pexels.com/photos/6431796/pexels-photo-6431796.jpeg?auto=compress&cs=tinysrgb&w=800',
+    buttonText: 'Explore',
     buttonColor: 'bg-secondary text-secondary-foreground hover:bg-secondary/90',
   },
 ]

@@ -42,11 +42,9 @@ export function CallbackPage() {
         <h1 className="text-2xl font-bold text-center text-primary mb-2">Completing Sign In</h1>
         <p className="text-center text-muted-foreground">{status}</p>
         {error && (
-          <div className="mt-4 p-4 bg-destructive/10 text-destructive rounded">
-            {error}
-          </div>
+          <div className="mt-4 p-4 bg-destructive/10 text-destructive rounded">{error}</div>
         )}
       </div>
     </div>
   )
-} 
+}

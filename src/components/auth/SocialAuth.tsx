@@ -1,5 +1,4 @@
 import { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
 import { Button } from '@/components/ui/button'
 import { Loader2 } from 'lucide-react'
 import { supabase } from '@/services/supabase'
@@ -19,7 +18,6 @@ const socialProviders: SocialAuthProvider[] = [
 ]
 
 export function SocialAuth() {
-  const navigate = useNavigate()
   const [loading, setLoading] = useState<string | null>(null)
 
   const handleSocialLogin = async (providerId: string) => {
@@ -28,25 +26,25 @@ export function SocialAuth() {
     try {
       const options = {
         redirectTo: `${window.location.origin}/auth/callback`,
-        queryParams: {}
+        queryParams: {},
       }
-      
+
       // Add prompt=select_account for Google to force account selection
       if (providerId === 'google') {
         options.queryParams = {
-          prompt: 'select_account'
+          prompt: 'select_account',
         }
       }
-      
+
       const { error } = await supabase.auth.signInWithOAuth({
-        provider: providerId as any,
+        provider: providerId as never,
         options: options,
       })
 
       if (error) {
         throw error
       }
-      
+
       // Note: No need to navigate here as Supabase handles the redirect flow
       // The user will be redirected to the OAuth provider and then back to our callback URL
     } catch (error) {
