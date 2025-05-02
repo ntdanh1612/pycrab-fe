@@ -77,7 +77,7 @@ export function MainNav() {
                   <NavigationMenuLink asChild>
                     <Link
                       to="/products"
-                      className="inline-flex h-9 items-center justify-center rounded-md bg-transparent px-4 py-2 text-sm font-medium text-foreground transition-colors hover:bg-primary/5 hover:text-primary focus:bg-primary/5"
+                      className="inline-flex h-9 items-center justify-center rounded-md bg-transparent px-4 py-2 text-sm font-medium text-foreground transition-colors hover:bg-primary/5 hover:text-primary focus:bg-primary/5 data-[active]:bg-primary/5 data-[state=open]:bg-primary/5 data-[state=open]:text-primary"
                     >
                       All Products
                     </Link>
@@ -116,9 +116,9 @@ export function MainNav() {
                     <Search className="h-5 w-5" />
                   </Link>
                 </Button>
-                <Button variant="ghost" size="icon" aria-label="View wishlist" asChild>
+                <Button variant="ghost" size="icon" aria-label="View wishlist" asChild className="hover:bg-red-50">
                   <Link to="/wishlist">
-                    <Heart className="h-5 w-5" />
+                    <Heart className="h-5 w-5 text-red-500" />
                   </Link>
                 </Button>
                 <CartIndicator />

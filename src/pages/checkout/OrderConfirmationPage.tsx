@@ -28,7 +28,7 @@ export default function OrderConfirmationPage() {
         <div className="max-w-2xl mx-auto">
           <div className="flex flex-col items-center text-center mb-8">
             <CheckCircle className="h-16 w-16 text-green-500 mb-4" />
-            <h1 className="text-3xl font-bold mb-2">Order Confirmed!</h1>
+            <h1 className="text-3xl font-bold mb-2 text-foreground">Order Confirmed!</h1>
             <p className="text-muted-foreground mb-2">
               Thank you for your purchase. Your order has been received and is being processed.
             </p>
@@ -36,12 +36,12 @@ export default function OrderConfirmationPage() {
           </div>
 
           <div className="bg-secondary/10 border rounded-lg p-6 mb-8">
-            <h2 className="text-xl font-bold mb-4">Order Details</h2>
+            <h2 className="text-xl font-bold mb-4 text-foreground">Order Details</h2>
             <div className="space-y-4">
               <div className="flex gap-4 items-start border-b pb-4">
                 <Package className="h-5 w-5 text-primary mt-0.5" />
                 <div>
-                  <h3 className="font-medium">Delivery Information</h3>
+                  <h3 className="font-medium text-foreground">Delivery Information</h3>
                   <p className="text-muted-foreground">
                     Your order is estimated to arrive by {getDeliveryDate()}.
                   </p>
@@ -54,7 +54,7 @@ export default function OrderConfirmationPage() {
               <div className="flex gap-4 items-start border-b pb-4">
                 <Home className="h-5 w-5 text-primary mt-0.5" />
                 <div>
-                  <h3 className="font-medium">Shipping Address</h3>
+                  <h3 className="font-medium text-foreground">Shipping Address</h3>
                   <p className="text-muted-foreground">
                     John Doe<br />
                     123 Ocean Drive<br />
@@ -67,7 +67,7 @@ export default function OrderConfirmationPage() {
               <div className="flex gap-4 items-start">
                 <FileText className="h-5 w-5 text-primary mt-0.5" />
                 <div>
-                  <h3 className="font-medium">Payment Information</h3>
+                  <h3 className="font-medium text-foreground">Payment Information</h3>
                   <p className="text-muted-foreground">
                     Credit Card ending in **** 4242<br />
                     Billing address same as shipping
@@ -85,19 +85,19 @@ export default function OrderConfirmationPage() {
               <div className="space-y-4 mb-4">
                 <div className="flex justify-between text-sm">
                   <span className="text-muted-foreground">Subtotal</span>
-                  <span>$129.97</span>
+                  <span className="text-foreground">$129.97</span>
                 </div>
                 <div className="flex justify-between text-sm">
                   <span className="text-muted-foreground">Shipping</span>
-                  <span>$5.99</span>
+                  <span className="text-foreground">$5.99</span>
                 </div>
                 <div className="flex justify-between text-sm">
                   <span className="text-muted-foreground">Tax</span>
-                  <span>$10.40</span>
+                  <span className="text-foreground">$10.40</span>
                 </div>
                 <div className="flex justify-between font-bold">
-                  <span>Total</span>
-                  <span>$146.36</span>
+                  <span className="text-foreground">Total</span>
+                  <span className="text-foreground">$146.36</span>
                 </div>
               </div>
             </div>

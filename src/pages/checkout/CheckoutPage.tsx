@@ -108,7 +108,7 @@ export default function CheckoutPage() {
     <section className="py-12">
       <Container>
         <div className="flex items-center gap-2 mb-6">
-          <h1 className="text-3xl font-bold">Checkout</h1>
+          <h1 className="text-3xl font-bold text-foreground">Checkout</h1>
         </div>
 
         <form onSubmit={handleSubmit}>
@@ -117,7 +117,7 @@ export default function CheckoutPage() {
             <div className="space-y-8">
               {/* Shipping Address */}
               <div className="bg-secondary/10 border rounded-lg p-6">
-                <h2 className="text-xl font-bold mb-4">Shipping Information</h2>
+                <h2 className="text-xl font-bold mb-4 text-foreground">Shipping Information</h2>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div className="space-y-2">
                     <Label htmlFor="firstName">First Name</Label>
@@ -216,7 +216,7 @@ export default function CheckoutPage() {
                     checked={formData.sameAsBilling}
                     onCheckedChange={handleCheckboxChange}
                   />
-                  <Label htmlFor="sameAsBilling" className="text-sm font-normal">
+                  <Label htmlFor="sameAsBilling" className="text-sm font-normal text-foreground">
                     Billing address is the same as shipping address
                   </Label>
                 </div>
@@ -224,7 +224,7 @@ export default function CheckoutPage() {
 
               {/* Shipping Method */}
               <div className="bg-secondary/10 border rounded-lg p-6">
-                <h2 className="text-xl font-bold mb-4">Shipping Method</h2>
+                <h2 className="text-xl font-bold mb-4 text-foreground">Shipping Method</h2>
                 <div className="space-y-3">
                   {shippingMethods.map((method) => (
                     <div
@@ -265,7 +265,7 @@ export default function CheckoutPage() {
             {/* Order Summary */}
             <div>
               <div className="sticky top-24 bg-secondary/10 border rounded-lg p-6 space-y-6">
-                <h2 className="text-xl font-bold mb-4">Order Summary</h2>
+                <h2 className="text-xl font-bold mb-4 text-foreground">Order Summary</h2>
 
                 <div className="space-y-4">
                   {items.map((item) => (

@@ -88,7 +88,7 @@ export function ForgotPassword() {
 
         <form onSubmit={handleSubmit} className="space-y-4">
           <div className="space-y-2">
-            <Label htmlFor="email" className="text-foreground/80">
+            <Label htmlFor="email" className="text-foreground">
               Email
             </Label>
             <Input

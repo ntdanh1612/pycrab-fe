@@ -75,7 +75,7 @@ export function Login() {
 
         <form onSubmit={handleSubmit} className="space-y-4">
           <div className="space-y-2">
-            <Label htmlFor="email" className="text-foreground/80">
+            <Label htmlFor="email" className="text-foreground">
               Email
             </Label>
             <Input
@@ -92,7 +92,7 @@ export function Login() {
 
           <div className="space-y-2">
             <div className="flex items-center justify-between">
-              <Label htmlFor="password" className="text-foreground/80">
+              <Label htmlFor="password" className="text-foreground">
                 Password
               </Label>
               <Link
@@ -121,7 +121,7 @@ export function Login() {
               onCheckedChange={handleCheckboxChange}
               className="text-secondary border-accent/30 data-[state=checked]:bg-secondary"
             />
-            <Label htmlFor="remember" className="text-sm text-foreground/70">
+            <Label htmlFor="remember" className="text-sm text-foreground">
               Remember me
             </Label>
           </div>

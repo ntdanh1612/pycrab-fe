@@ -288,10 +288,14 @@ export default function ProductDetailPage() {
                 <Button
                   variant={productInWishlist ? 'default' : 'outline'}
                   size="icon"
-                  className="size-12"
+                  className={`size-12 ${
+                    productInWishlist 
+                      ? 'hover:bg-red-100' 
+                      : 'hover:bg-red-50 hover:border-red-200 hover:text-red-500'
+                  }`}
                   onClick={handleToggleWishlist}
                 >
-                  <Heart className={`h-5 w-5 ${productInWishlist ? 'fill-current' : ''}`} />
+                  <Heart className={`h-5 w-5 ${productInWishlist ? 'fill-red-500 text-red-500' : 'text-red-500'}`} />
                 </Button>
               </div>
             </div>

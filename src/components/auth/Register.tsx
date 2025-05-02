@@ -104,7 +104,7 @@ export function Register() {
 
         <form onSubmit={handleSubmit} className="space-y-4">
           <div className="space-y-2">
-            <Label htmlFor="name" className="text-foreground/80">
+            <Label htmlFor="name" className="text-foreground">
               Full Name
             </Label>
             <Input
@@ -119,7 +119,7 @@ export function Register() {
           </div>
 
           <div className="space-y-2">
-            <Label htmlFor="email" className="text-foreground/80">
+            <Label htmlFor="email" className="text-foreground">
               Email
             </Label>
             <Input
@@ -135,7 +135,7 @@ export function Register() {
           </div>
 
           <div className="space-y-2">
-            <Label htmlFor="password" className="text-foreground/80">
+            <Label htmlFor="password" className="text-foreground">
               Password
             </Label>
             <Input
@@ -154,7 +154,7 @@ export function Register() {
           </div>
 
           <div className="space-y-2">
-            <Label htmlFor="passwordConfirmation" className="text-foreground/80">
+            <Label htmlFor="passwordConfirmation" className="text-foreground">
               Confirm Password
             </Label>
             <Input
@@ -180,7 +180,7 @@ export function Register() {
               required
               className="text-secondary border-accent/30 data-[state=checked]:bg-secondary"
             />
-            <Label htmlFor="acceptTerms" className="text-sm text-foreground/70">
+            <Label htmlFor="acceptTerms" className="text-sm text-foreground">
               I agree to the{' '}
               <Link to="/terms" className="text-secondary hover:text-primary transition-colors">
                 Terms of Service
