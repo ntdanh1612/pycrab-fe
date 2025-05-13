@@ -13,8 +13,20 @@ import { Button } from '@/components/ui/button'
 import { useAuthStore } from '@/stores/auth.store'
 import { useEffect, useState } from 'react'
 import { supabaseAuthService } from '@/services/auth.supabase'
-import { Heart, Search, UserCircle } from 'lucide-react'
+import { 
+  Bell, 
+  Heart, 
+  LogOut, 
+  Search, 
+  Settings, 
+  UserCircle, 
+  Package, 
+  CreditCard, 
+  Home,
+  ChevronDown 
+} from 'lucide-react'
 import { CartIndicator } from '@/components/cart/CartIndicator'
+import { ProfileDropdown } from './ProfileDropdown'
 
 const categories = [
   {
@@ -38,7 +50,7 @@ const categories = [
 ]
 
 export function MainNav() {
-  const { isAuthenticated, logout, user } = useAuthStore()
+  const { isAuthenticated } = useAuthStore()
   const [isAdmin, setIsAdmin] = useState(false)
 
   // Check if the current user is an admin
@@ -59,9 +71,6 @@ export function MainNav() {
       setIsAdmin(false)
     }
   }, [isAuthenticated])
-
-  // Get first name from full name
-  const firstName = user?.name ? user.name.split(' ')[0] : ''
 
   return (
     <header className="sticky top-0 z-50 w-full border-b border-primary/10 bg-white/95 backdrop-blur supports-[backdrop-filter]:bg-white/80 shadow-sm">
@@ -124,25 +133,7 @@ export function MainNav() {
                 <CartIndicator />
               </div>
               {isAuthenticated ? (
-                <>
-                  <div className="flex items-center mr-2 text-foreground">
-                    <UserCircle className="h-5 w-5 mr-1.5 text-primary/70" />
-                    <span className="font-medium text-sm">Hi, {firstName}</span>
-                  </div>
-                  <Button variant="ghost" size="sm" asChild>
-                    <Link to="/dashboard">Dashboard</Link>
-                  </Button>
-                  {isAdmin && (
-                    <Button variant="ghost" size="sm" asChild>
-                      <Link to="/admin" className="text-primary">
-                        Admin
-                      </Link>
-                    </Button>
-                  )}
-                  <Button variant="outline" size="sm" onClick={() => logout()}>
-                    Sign Out
-                  </Button>
-                </>
+                <ProfileDropdown isAdmin={isAdmin} />
               ) : (
                 <>
                   <Button variant="ghost" size="sm" asChild>

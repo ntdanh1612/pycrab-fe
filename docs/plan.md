@@ -65,16 +65,16 @@ Notes: mark the task done ([x]) immediately when completed, (Make sure don't wor
 - [x] Implement product reviews and ratings
 
 ## Epic 5: User Account Management
-- [ ] Create user profile dashboard
-- [ ] Implement profile information editing
-- [ ] Create address book management
-- [ ] Implement saved payment methods management
-- [ ] Create order history display
-- [ ] Implement order tracking functionality
-- [ ] Create wishlist management interface
-- [ ] Implement user preferences settings
-- [ ] Create notification center
-- [ ] Implement account deletion functionality
+- [x] Create user profile dashboard
+- [x] Implement profile information editing
+- [x] Create address book management
+- [x] Implement saved payment methods management
+- [x] Create order history display
+- [x] Implement order tracking functionality
+- [x] Create wishlist management interface
+- [x] Implement user preferences settings
+- [x] Create notification center
+- [x] Implement account deletion functionality
 
 ## Epic 6: Admin Portal Foundation
 - [ ] Create admin authentication and authorization

@@ -2,9 +2,7 @@ import { Card, CardContent, CardFooter } from './card'
 
 export function ProductCardSkeleton() {
   return (
-    <Card
-      className="group overflow-hidden border-secondary/20 bg-white shadow-sm hover:shadow-md transition-all duration-300"
-    >
+    <Card className="group overflow-hidden border-secondary/20 bg-white shadow-sm hover:shadow-md transition-all duration-300">
       <div className="relative">
         <div className="aspect-square overflow-hidden bg-secondary/5">
           <div className="absolute inset-0 bg-gradient-linear-90 from-transparent via-secondary/5 to-transparent animate-[sweep_1.5s_ease-in-out_infinite]"></div>
