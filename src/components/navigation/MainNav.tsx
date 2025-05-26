@@ -13,7 +13,20 @@ import { Button } from '@/components/ui/button'
 import { useAuthStore } from '@/stores/auth.store'
 import { useEffect, useState } from 'react'
 import { supabaseAuthService } from '@/services/auth.supabase'
-import { UserCircle } from 'lucide-react'
+import { 
+  Bell, 
+  Heart, 
+  LogOut, 
+  Search, 
+  Settings, 
+  UserCircle, 
+  Package, 
+  CreditCard, 
+  Home,
+  ChevronDown 
+} from 'lucide-react'
+import { CartIndicator } from '@/components/cart/CartIndicator'
+import { ProfileDropdown } from './ProfileDropdown'
 
 const categories = [
   {
@@ -23,15 +36,6 @@ const categories = [
       { title: 'Anniversary Gifts', href: '/category/anniversary' },
       { title: 'Wedding Gifts', href: '/category/wedding' },
       { title: 'Corporate Gifts', href: '/category/corporate' },
-    ],
-  },
-  {
-    title: 'Souvenirs',
-    items: [
-      { title: 'Local Crafts', href: '/category/local-crafts' },
-      { title: 'Traditional Art', href: '/category/traditional-art' },
-      { title: 'Regional Specialties', href: '/category/regional' },
-      { title: 'Cultural Items', href: '/category/cultural' },
     ],
   },
   {
@@ -46,7 +50,7 @@ const categories = [
 ]
 
 export function MainNav() {
-  const { isAuthenticated, logout, user } = useAuthStore()
+  const { isAuthenticated } = useAuthStore()
   const [isAdmin, setIsAdmin] = useState(false)
 
   // Check if the current user is an admin
@@ -68,9 +72,6 @@ export function MainNav() {
     }
   }, [isAuthenticated])
 
-  // Get first name from full name
-  const firstName = user?.name ? user.name.split(' ')[0] : ''
-
   return (
     <header className="sticky top-0 z-50 w-full border-b border-primary/10 bg-white/95 backdrop-blur supports-[backdrop-filter]:bg-white/80 shadow-sm">
       <Container>
@@ -81,6 +82,16 @@ export function MainNav() {
           <div className="flex items-center gap-4">
             <NavigationMenu>
               <NavigationMenuList className="gap-1">
+                <NavigationMenuItem>
+                  <NavigationMenuLink asChild>
+                    <Link
+                      to="/products"
+                      className="inline-flex h-9 items-center justify-center rounded-md bg-transparent px-4 py-2 text-sm font-medium text-foreground transition-colors hover:bg-primary/5 hover:text-primary focus:bg-primary/5 data-[active]:bg-primary/5 data-[state=open]:bg-primary/5 data-[state=open]:text-primary"
+                    >
+                      All Products
+                    </Link>
+                  </NavigationMenuLink>
+                </NavigationMenuItem>
                 {categories.map((category) => (
                   <NavigationMenuItem key={category.title}>
                     <NavigationMenuTrigger className="bg-transparent text-foreground hover:bg-primary/5 hover:text-primary focus:bg-primary/5 data-[active]:bg-primary/5 data-[state=open]:bg-primary/5 data-[state=open]:text-primary cursor-pointer">
@@ -107,26 +118,22 @@ export function MainNav() {
               </NavigationMenuList>
             </NavigationMenu>
             <div className="flex items-center gap-2">
+              {/* Shopping icons */}
+              <div className="flex items-center gap-1 mr-1">
+                <Button variant="ghost" size="icon" aria-label="Search products" asChild>
+                  <Link to="/products">
+                    <Search className="h-5 w-5" />
+                  </Link>
+                </Button>
+                <Button variant="ghost" size="icon" aria-label="View wishlist" asChild className="hover:bg-red-50">
+                  <Link to="/wishlist">
+                    <Heart className="h-5 w-5 text-red-500" />
+                  </Link>
+                </Button>
+                <CartIndicator />
+              </div>
               {isAuthenticated ? (
-                <>
-                  <div className="flex items-center mr-2 text-foreground">
-                    <UserCircle className="h-5 w-5 mr-1.5 text-primary/70" />
-                    <span className="font-medium text-sm">Hi, {firstName}</span>
-                  </div>
-                  <Button variant="ghost" size="sm" asChild>
-                    <Link to="/dashboard">Dashboard</Link>
-                  </Button>
-                  {isAdmin && (
-                    <Button variant="ghost" size="sm" asChild>
-                      <Link to="/admin" className="text-primary">
-                        Admin
-                      </Link>
-                    </Button>
-                  )}
-                  <Button variant="outline" size="sm" onClick={() => logout()}>
-                    Sign Out
-                  </Button>
-                </>
+                <ProfileDropdown isAdmin={isAdmin} />
               ) : (
                 <>
                   <Button variant="ghost" size="sm" asChild>

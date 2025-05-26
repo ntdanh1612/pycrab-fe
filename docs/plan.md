@@ -1,4 +1,4 @@
-# Gift & Souvenir E-commerce Project Plan
+# Gift E-commerce Project Plan
 
 Notes: mark the task done ([x]) immediately when completed, (Make sure don't work on the complted tasks)
 
@@ -48,33 +48,33 @@ Notes: mark the task done ([x]) immediately when completed, (Make sure don't wor
 - [x] Implement authentication error handling
 
 ## Epic 4: User Portal & Shopping Experience
-- [ ] Implement product listing page with filters
-- [ ] Create product category navigation
-- [ ] Design and implement product detail page
-- [ ] Create product image gallery with zoom functionality
-- [ ] Implement product variant selection (size, color, style)
-- [ ] Create related products component
-- [ ] Implement shopping cart functionality with Zustand
-- [ ] Create wishlist functionality
-- [ ] Implement product search with autocomplete
-- [ ] Create checkout process flow
-- [ ] Implement shipping options selection
-- [ ] Create payment integration (Stripe/PayPal)
-- [ ] Design and implement order confirmation page
-- [ ] Create order history and tracking page
-- [ ] Implement product reviews and ratings
+- [x] Implement product listing page with filters
+- [x] Create product category navigation
+- [x] Design and implement product detail page
+- [x] Create product image gallery with zoom functionality
+- [x] Implement product variant selection (size, color, style)
+- [x] Create related products component
+- [x] Implement shopping cart functionality with Zustand
+- [x] Create wishlist functionality
+- [x] Implement product search with autocomplete
+- [x] Create checkout process flow
+- [x] Implement shipping options selection
+<!-- - [ ] Create payment integration (Stripe/PayPal) (low-priority) -->
+- [x] Design and implement order confirmation page
+- [x] Create order history and tracking page
+- [x] Implement product reviews and ratings
 
 ## Epic 5: User Account Management
-- [ ] Create user profile dashboard
-- [ ] Implement profile information editing
-- [ ] Create address book management
-- [ ] Implement saved payment methods management
-- [ ] Create order history display
-- [ ] Implement order tracking functionality
-- [ ] Create wishlist management interface
-- [ ] Implement user preferences settings
-- [ ] Create notification center
-- [ ] Implement account deletion functionality
+- [x] Create user profile dashboard
+- [x] Implement profile information editing
+- [x] Create address book management
+- [x] Implement saved payment methods management
+- [x] Create order history display
+- [x] Implement order tracking functionality
+- [x] Create wishlist management interface
+- [x] Implement user preferences settings
+- [x] Create notification center
+- [x] Implement account deletion functionality
 
 ## Epic 6: Admin Portal Foundation
 - [ ] Create admin authentication and authorization

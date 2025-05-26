@@ -50,4 +50,48 @@
   --shadow-sm: 0 1px 2px 0 rgba(0, 106, 113, 0.05);
   --shadow-md: 0 4px 6px -1px rgba(0, 106, 113, 0.1), 0 2px 4px -2px rgba(0, 106, 113, 0.1);
   --shadow-lg: 0 10px 15px -3px rgba(0, 106, 113, 0.1), 0 4px 6px -4px rgba(0, 106, 113, 0.1);
+  
+  /* Custom animations */
+  --animate-shimmer: shimmer 2s infinite;
+  --animate-sweep: sweep 1.5s ease-in-out infinite;
+}
+
+/* Custom keyframes animations */
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+@keyframes sweep {
+  0% {
+    transform: translateX(-100%);
+  }
+  50% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+/* Apply background-size to shimmer animations */
+.animate-\[shimmer_2s_infinite\] {
+  background-size: 200% 100%;
+}
+
+/* Apply styles to sweep animations */
+.animate-\[sweep_1\.5s_ease-in-out_infinite\],
+.animate-\[sweep_1\.5s_ease-in-out_0\.1s_infinite\],
+.animate-\[sweep_1\.5s_ease-in-out_0\.2s_infinite\],
+.animate-\[sweep_1\.5s_ease-in-out_0\.3s_infinite\],
+.animate-\[sweep_1\.5s_ease-in-out_0\.4s_infinite\],
+.animate-\[sweep_1\.5s_ease-in-out_0\.5s_infinite\],
+.animate-\[sweep_1\.5s_ease-in-out_0\.6s_infinite\],
+.animate-\[sweep_1\.5s_ease-in-out_0\.7s_infinite\],
+.animate-\[sweep_1\.5s_ease-in-out_0\.8s_infinite\] {
+  background-size: 200% 100%;
 }

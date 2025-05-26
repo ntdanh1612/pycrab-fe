@@ -19,6 +19,23 @@ const ResetPasswordPage = React.lazy(() => import('@/pages/auth/ResetPasswordPag
 const VerifyAccountPage = React.lazy(() => import('@/pages/auth/VerifyAccountPage'))
 const AdminDashboard = React.lazy(() => import('@/pages/admin/AdminDashboard'))
 
+// Lazy load new Epic 4 pages
+const ProductListingPage = React.lazy(() => import('@/pages/products/ProductListingPage'))
+const ProductDetailPage = React.lazy(() => import('@/pages/products/ProductDetailPage'))
+const CartPage = React.lazy(() => import('@/pages/cart/CartPage'))
+const CheckoutPage = React.lazy(() => import('@/pages/checkout/CheckoutPage'))
+const OrderConfirmationPage = React.lazy(() => import('@/pages/checkout/OrderConfirmationPage'))
+const WishlistPage = React.lazy(() => import('@/pages/wishlist/WishlistPage'))
+
+// Lazy load user profile pages
+const ProfileDashboard = React.lazy(() => import('@/pages/profile/ProfileDashboard'))
+const EditProfile = React.lazy(() => import('@/pages/profile/EditProfile'))
+const AddressBook = React.lazy(() => import('@/pages/profile/AddressBook'))
+const PaymentMethods = React.lazy(() => import('@/pages/profile/PaymentMethods'))
+const OrderHistory = React.lazy(() => import('@/pages/profile/OrderHistory'))
+const AccountSettings = React.lazy(() => import('@/pages/profile/AccountSettings'))
+const Notifications = React.lazy(() => import('@/pages/profile/Notifications'))
+
 interface AppProps {
   initialError?: string
 }
@@ -83,15 +100,142 @@ function App({ initialError }: AppProps) {
             />
             <Route path="/auth/callback" element={<CallbackPage />} />
 
+            {/* Shopping Experience Routes */}
+            <Route
+              path="/products"
+              element={
+                <React.Suspense fallback={<div className="container py-10">Loading products...</div>}>
+                  <ProductListingPage />
+                </React.Suspense>
+              }
+            />
+            <Route
+              path="/products/:productId"
+              element={
+                <React.Suspense fallback={<div className="container py-10">Loading product...</div>}>
+                  <ProductDetailPage />
+                </React.Suspense>
+              }
+            />
+            <Route
+              path="/cart"
+              element={
+                <React.Suspense fallback={<div className="container py-10">Loading cart...</div>}>
+                  <CartPage />
+                </React.Suspense>
+              }
+            />
+            <Route
+              path="/wishlist"
+              element={
+                <React.Suspense fallback={<div className="container py-10">Loading wishlist...</div>}>
+                  <WishlistPage />
+                </React.Suspense>
+              }
+            />
+
+            {/* Checkout Process Routes */}
+            <Route
+              path="/checkout"
+              element={
+                <React.Suspense fallback={<div className="container py-10">Loading checkout...</div>}>
+                  <CheckoutPage />
+                </React.Suspense>
+              }
+            />
+            <Route
+              path="/checkout/success"
+              element={
+                <React.Suspense fallback={<div className="container py-10">Loading...</div>}>
+                  <OrderConfirmationPage />
+                </React.Suspense>
+              }
+            />
+
             {/* Protected routes */}
             <Route element={<ProtectedRoute />}>
+              {/* Redirect /dashboard to /profile for now */}
               <Route
                 path="/dashboard"
-                element={<div className="container py-10">Dashboard (Coming Soon)</div>}
+                element={
+                  <React.Suspense fallback={<div className="container py-10">Loading profile...</div>}>
+                    <ProfileDashboard />
+                  </React.Suspense>
+                }
               />
+              
+              {/* Profile Routes */}
               <Route
                 path="/profile"
-                element={<div className="container py-10">Profile (Coming Soon)</div>}
+                element={
+                  <React.Suspense fallback={<div className="container py-10">Loading profile...</div>}>
+                    <ProfileDashboard />
+                  </React.Suspense>
+                }
+              />
+              <Route
+                path="/profile/edit"
+                element={
+                  <React.Suspense fallback={<div className="container py-10">Loading...</div>}>
+                    <EditProfile />
+                  </React.Suspense>
+                }
+              />
+              <Route
+                path="/profile/addresses"
+                element={
+                  <React.Suspense fallback={<div className="container py-10">Loading...</div>}>
+                    <AddressBook />
+                  </React.Suspense>
+                }
+              />
+              <Route
+                path="/profile/payment-methods"
+                element={
+                  <React.Suspense fallback={<div className="container py-10">Loading...</div>}>
+                    <PaymentMethods />
+                  </React.Suspense>
+                }
+              />
+              <Route
+                path="/profile/orders"
+                element={
+                  <React.Suspense fallback={<div className="container py-10">Loading...</div>}>
+                    <OrderHistory />
+                  </React.Suspense>
+                }
+              />
+              <Route
+                path="/profile/orders/:orderId"
+                element={
+                  <React.Suspense fallback={<div className="container py-10">Loading...</div>}>
+                    <OrderHistory />
+                  </React.Suspense>
+                }
+              />
+              <Route
+                path="/profile/orders/track"
+                element={
+                  <React.Suspense fallback={<div className="container py-10">Loading...</div>}>
+                    <OrderHistory trackingView={true} />
+                  </React.Suspense>
+                }
+              />
+              <Route
+                path="/profile/settings"
+                element={
+                  <React.Suspense fallback={<div className="container py-10">Loading...</div>}>
+                    <AccountSettings />
+                  </React.Suspense>
+                }
+              />
+              <Route
+                path="/profile/notifications"
+                element={
+                  <React.Suspense fallback={<div className="container py-10">Loading...</div>}>
+                    <Notifications />
+                  </React.Suspense>
+                }
               />
             </Route>
 

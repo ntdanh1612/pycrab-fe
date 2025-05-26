@@ -177,7 +177,7 @@ export function Footer() {
         <div className="mt-12 pt-8 border-t border-primary/10">
           <div className="flex flex-col md:flex-row justify-between items-center gap-6">
             <p className="text-sm text-foreground/70">
-              © {new Date().getFullYear()} Gift & Souvenir. All rights reserved.
+              © {new Date().getFullYear()} Gift Shop. All rights reserved.
             </p>
             <div className="flex items-center gap-6">
               {socialLinks.map((link) => (
